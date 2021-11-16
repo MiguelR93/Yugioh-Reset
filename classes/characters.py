@@ -30,3 +30,18 @@ class Player():
         #                 self.playerX += 0
         #             else: 
         #                 self.playerX += self.speed
+
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    print("Izquierda, player!")
+                    if self.playerX <= 0:
+                        self.playerX += 0
+                    else:    
+                        self.playerX -= self.speed
+                elif event.key == pygame.K_RIGHT:
+                    print("Derecha, player!")
+                    if self.playerX >800:
+                        self.playerX += 0
+                    else: 
+                        self.playerX += self.speed
