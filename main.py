@@ -13,8 +13,6 @@ DISPLAYSURF = pygame.display.set_mode((1200,800))
 pygame.display.set_caption('Yu-Gi-Oh! Reset')
 
 while True:
-    
-    # DISPLAYSURF.blit(background00, (posBackground))
     DISPLAYSURF.blit(background.front00, (background.posBackground))
 
     # detecting input ------
@@ -23,3 +21,7 @@ while True:
             pygame.quit()
             sys.exit
         pygame.display.update()
+    
+
+    # characters ------
+    # player
