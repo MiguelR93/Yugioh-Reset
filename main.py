@@ -31,7 +31,7 @@ while True:
     # protagonista.movimiento()
             
     if event.type == pygame.KEYDOWN:
-        print(playerX)
+        print(playerX, playerY)
         if event.key == pygame.K_LEFT:
             print("Izquierda, player!")
             if playerX <= 0:
