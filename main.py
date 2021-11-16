@@ -20,8 +20,12 @@ while True:
     
     # characters ------
     # player
-    DISPLAYSURF.blit(characters.Player.avatar, (characters.Player.playerX, characters.Player.playerY))
-    characters.Player.movement()
+    protagonista = characters.Player(1, "Drakdio", pygame.image.load("./images/characters/kaibaF01.png"))
+    DISPLAYSURF.blit(protagonista.avatar, (protagonista.playerX, protagonista.playerY))
+    protagonista.movimiento()
+
+    # DISPLAYSURF.blit(characters.Player.avatar, (characters.Player.playerX, characters.Player.playerY))
+    # characters.Player.movement()
 
     # detecting input ------
     for event in pygame.event.get():
