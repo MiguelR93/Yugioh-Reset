@@ -7,31 +7,57 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-# # background ----
-# posBackground = (0,0)
-# background00 = pygame.image.load("./images/background00.png")
-# front00 = pygame.image.load("./images/front00.png")
+# # Characters -------
+# Player:
+playerX, playerY = 600, 400
+speed = 5
+
 
 DISPLAYSURF = pygame.display.set_mode((1200,800))
 pygame.display.set_caption('Yu-Gi-Oh! Reset')
 
 while True:
-    DISPLAYSURF.blit(background.front00, (background.posBackground))
-    
-    # characters ------
-    # player
-    protagonista = characters.Player(1, "Drakdio", pygame.image.load("./images/characters/kaibaF01.png"))
-    DISPLAYSURF.blit(protagonista.avatar, (protagonista.playerX, protagonista.playerY))
-    protagonista.movimiento()
-
-    # DISPLAYSURF.blit(characters.Player.avatar, (characters.Player.playerX, characters.Player.playerY))
-    # characters.Player.movement()
-
     # detecting input ------
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+
+    DISPLAYSURF.blit(background.front00, (background.posBackground))
+    
+    # characters ------
+    # player
+    protagonista = characters.Player(1, "Drakdio", playerX, playerY, pygame.image.load("./images/characters/kaibaF01.png"))
+    # protagonista.movimiento()
             
+    if event.type == pygame.KEYDOWN:
+        print(playerX)
+        if event.key == pygame.K_LEFT:
+            print("Izquierda, player!")
+            if playerX <= 0:
+                playerX += 0
+            else:    
+                playerX -= speed
+        elif event.key == pygame.K_RIGHT:
+            print("Derecha, player!")
+            if playerX >= 1200:
+                playerX += 0
+            else: 
+                playerX += speed
+        elif event.key == pygame.K_UP:
+            print("Arriba, player!")
+            if playerY <= 0:
+                playerY -= 0
+            else: 
+                playerY -= speed
+        elif event.key == pygame.K_DOWN:
+            print("Abajo, player!")
+            if playerY >= 800:
+                playerY += 0
+            else: 
+                playerY += speed
+    
+    protagonistaAvatar = DISPLAYSURF.blit(protagonista.avatar, (playerX, protagonista.playerY))
+    
     pygame.display.update()
     clock.tick(60)
