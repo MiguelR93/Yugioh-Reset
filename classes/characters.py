@@ -25,10 +25,10 @@ class Player():
 
     def movimiento(self):
         print("movimiento de Kaiba")
-        # while True:
-        #     if event.type == pygame.KEYDOWN:
-        #         if event.key == pygame.K_LEFT:
-        #             print("Izquierda, player!")
+        while True:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    print("Izquierda, player!")
         #             if self.playerX <= 0:
         #                 self.playerX += 0
         #             else:    
