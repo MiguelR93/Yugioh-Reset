@@ -8,11 +8,14 @@ pygame.init()
 clock = pygame.time.Clock()
 
 # # Characters -------
+speedX, speedY = 75, 160
 # Player: 75x160
 playerX, playerY = 600, 320
-speedX, speedY = 75, 160
 protagonista = characters.Player(1, "Drakdio", playerX, playerY, pygame.image.load("./images/characters/kaibaF01.png"))
 
+# NPC:
+npc1X, npc1Y = 0, 0
+npc1 = characters.Player(1, "Kaiba", npc1X, npc1Y, pygame.image.load("./images/characters/kaibaEvilF01.png"))
 
 DISPLAYSURF = pygame.display.set_mode((1200,800))
 pygame.display.set_caption('Yu-Gi-Oh! Reset')
@@ -51,6 +54,9 @@ while True:
                 playerY += speedY
     
     protagonistaAvatar = DISPLAYSURF.blit(protagonista.avatar, (playerX, playerY))
+    
+    # NPC:
+    enemy1 = DISPLAYSURF.blit(npc1.avatar, (npc1X, npc1Y))
     
     pygame.display.update()
     clock.tick(60)
