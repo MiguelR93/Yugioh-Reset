@@ -8,9 +8,10 @@ pygame.init()
 clock = pygame.time.Clock()
 
 # # Characters -------
-# Player:
-playerX, playerY = 600, 400
-speed = 5
+# Player: 75x160
+playerX, playerY = 600, 320
+speedX, speedY = 75, 160
+protagonista = characters.Player(1, "Drakdio", playerX, playerY, pygame.image.load("./images/characters/kaibaF01.png"))
 
 
 DISPLAYSURF = pygame.display.set_mode((1200,800))
@@ -24,40 +25,37 @@ while True:
             sys.exit()
 
     DISPLAYSURF.blit(background.front00, (background.posBackground))
-    
-    # characters ------
-    # player
-    protagonista = characters.Player(1, "Drakdio", playerX, playerY, pygame.image.load("./images/characters/kaibaF01.png"))
-    # protagonista.movimiento()
-            
+
+    # # Characters -------
+    # Player: 75x160
     if event.type == pygame.KEYDOWN:
         print(playerX, playerY)
         if event.key == pygame.K_LEFT:
-            print("Izquierda, player!")
+            # print("Izquierda, player!")
             if playerX <= 0:
                 playerX += 0
             else:    
-                playerX -= speed
+                playerX -= speedX
         elif event.key == pygame.K_RIGHT:
-            print("Derecha, player!")
-            if playerX >= 1200:
+            # print("Derecha, player!")
+            if playerX >= 1125: #1200-75
                 playerX += 0
             else: 
-                playerX += speed
+                playerX += speedX
         elif event.key == pygame.K_UP:
-            print("Arriba, player!")
+            # print("Arriba, player!")
             if playerY <= 0:
                 playerY -= 0
             else: 
-                playerY -= speed
+                playerY -= speedY
         elif event.key == pygame.K_DOWN:
-            print("Abajo, player!")
-            if playerY >= 800:
+            # print("Abajo, player!")
+            if playerY >= 640: #800-160
                 playerY += 0
             else: 
-                playerY += speed
+                playerY += speedY
     
-    protagonistaAvatar = DISPLAYSURF.blit(protagonista.avatar, (playerX, protagonista.playerY))
+    protagonistaAvatar = DISPLAYSURF.blit(protagonista.avatar, (playerX, playerY))
     
     pygame.display.update()
     clock.tick(60)
