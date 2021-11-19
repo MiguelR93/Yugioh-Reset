@@ -2,6 +2,7 @@ import pygame, sys
 from pygame.locals import *
 import classes.background as background
 import classes.characters as characters
+import script.duel as duel
 
 pygame.init()
 
