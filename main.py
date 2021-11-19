@@ -34,29 +34,37 @@ while True:
     # Player: 75x160
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT:
-            currentPlyayerAvatar = protagonista.avatarLeft
-            if playerX <= 0:
-                playerX += 0
-            else:    
-                playerX -= speedX
+            if currentPlyayerAvatar != protagonista.avatarLeft:
+                currentPlyayerAvatar = protagonista.avatarLeft
+            else:
+                if playerX <= 0:
+                    playerX += 0
+                else:    
+                    playerX -= speedX
         elif event.key == pygame.K_RIGHT:
-            currentPlyayerAvatar = protagonista.avatarRight
-            if playerX >= 1125: #1200-75
-                playerX += 0
-            else: 
-                playerX += speedX
+            if currentPlyayerAvatar != protagonista.avatarRight:
+                currentPlyayerAvatar = protagonista.avatarRight
+            else:
+                if playerX >= 1125: #1200-75
+                    playerX += 0
+                else: 
+                    playerX += speedX
         elif event.key == pygame.K_UP:
-            currentPlyayerAvatar = protagonista.avatarBack
-            if playerY <= 0:
-                playerY -= 0
-            else: 
-                playerY -= speedY
+            if currentPlyayerAvatar != protagonista.avatarBack:
+                currentPlyayerAvatar = protagonista.avatarBack
+            else:
+                if playerY <= 0:
+                    playerY -= 0
+                else: 
+                    playerY -= speedY
         elif event.key == pygame.K_DOWN:
-            currentPlyayerAvatar = protagonista.avatarFront
-            if playerY >= 640: #800-160
-                playerY += 0
-            else: 
-                playerY += speedY
+            if currentPlyayerAvatar != protagonista.avatarFront:
+                currentPlyayerAvatar = protagonista.avatarFront
+            else:
+                if playerY >= 640: #800-160
+                    playerY += 0
+                else: 
+                    playerY += speedY
     
     # protagonistaAvatar = DISPLAYSURF.blit(protagonista.avatarFront, (playerX, playerY))
     protagonistaAvatar = DISPLAYSURF.blit(currentPlyayerAvatar, (playerX, playerY))
