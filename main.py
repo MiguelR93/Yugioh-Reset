@@ -12,6 +12,7 @@ speedX, speedY = 75, 160
 # Player: 75x160
 playerX, playerY = 600, 320
 protagonista = characters.Player(1, "Drakdio", playerX, playerY, pygame.image.load("./images/characters/kaibaF01.png"), pygame.image.load("./images/characters/kaibaR01.png"), pygame.image.load("./images/characters/kaibaL01.png"), pygame.image.load("./images/characters/kaibaB01.png"))
+currentPlyayerAvatar = protagonista.avatarFront
 
 # NPC:
 npc1X, npc1Y = 0, 0
@@ -33,27 +34,32 @@ while True:
     # Player: 75x160
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT:
+            currentPlyayerAvatar = protagonista.avatarLeft
             if playerX <= 0:
                 playerX += 0
             else:    
                 playerX -= speedX
         elif event.key == pygame.K_RIGHT:
+            currentPlyayerAvatar = protagonista.avatarRight
             if playerX >= 1125: #1200-75
                 playerX += 0
             else: 
                 playerX += speedX
         elif event.key == pygame.K_UP:
+            currentPlyayerAvatar = protagonista.avatarBack
             if playerY <= 0:
                 playerY -= 0
             else: 
                 playerY -= speedY
         elif event.key == pygame.K_DOWN:
+            currentPlyayerAvatar = protagonista.avatarFront
             if playerY >= 640: #800-160
                 playerY += 0
             else: 
                 playerY += speedY
     
-    protagonistaAvatar = DISPLAYSURF.blit(protagonista.avatarFront, (playerX, playerY))
+    # protagonistaAvatar = DISPLAYSURF.blit(protagonista.avatarFront, (playerX, playerY))
+    protagonistaAvatar = DISPLAYSURF.blit(currentPlyayerAvatar, (playerX, playerY))
     
     # NPC:
     enemy1 = DISPLAYSURF.blit(npc1.avatarFront, (npc1X, npc1Y))
