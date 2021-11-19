@@ -3,11 +3,14 @@ import pygame, sys
 from pygame.locals import *
 
 class Character():
-    def __init__(self, id, name, playerX, playerY, avatar):
+    def __init__(self, id, name, playerX, playerY, avatarFront, avatarRight, avatarLeft, avatarBack):
         # general:
         self.id = id
         self.name = name
-        self.avatar = avatar
+        self.avatarFront = avatarFront
+        self.avatarRight = avatarRight
+        self.avatarLeft = avatarLeft
+        self.avatarBack = avatarBack
         self.playerX = playerX
         self.playerY = playerY
 
@@ -30,8 +33,8 @@ class Character():
         self.leftSTZ = None
 
 class Npc(Character):
-    def __init__(self, id, name, playerX, playerY, avatar, firstFrase, duelFrase):
-        super().__init__(id, name, playerX, playerY, avatar)
+    def __init__(self, id, name, playerX, playerY, avatarFront, avatarRight, avatarLeft, avatarBack, firstFrase, duelFrase):
+        super().__init__(id, name, playerX, playerY, avatarFront, avatarRight, avatarLeft, avatarBack)
         
         #  on Street:
         self.firstFrase = firstFrase
@@ -39,5 +42,5 @@ class Npc(Character):
         
 
 class Player(Character):
-    def __init__(self, id, name, playerX, playerY, avatar):
-        super().__init__(id, name, playerX, playerY, avatar)
+    def __init__(self, id, name, playerX, playerY, avatarFront, avatarRight, avatarLeft, avatarBack):
+        super().__init__(id, name, playerX, playerY, avatarFront, avatarRight, avatarLeft, avatarBack)
