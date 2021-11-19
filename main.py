@@ -20,7 +20,7 @@ currentPlyayerAvatar = protagonista.avatarFront
 
 
 # NPC:
-npc1X, npc1Y = 0, 320
+npc1X, npc1Y = 75, 320
 npc1 = characters.Npc(1, "Kaiba", npc1X, npc1Y, pygame.image.load("./images/characters/kaibaEvilF01.png"), pygame.image.load("./images/characters/kaibaEvilF01.png"), pygame.image.load("./images/characters/kaibaEvilF01.png"), pygame.image.load("./images/characters/kaibaEvilF01.png"), "Hola", "Duelo!")
 
 
@@ -43,6 +43,9 @@ while True:
             else:
                 if playerX <= 0:
                     playerX += 0
+                elif (playerX == npc1X + 75) and (playerY == npc1Y):
+                    print("Aquí hay alguien")
+                    playerX += 0
                 else:    
                     playerX -= speedX
         elif event.key == pygame.K_RIGHT:
@@ -51,6 +54,9 @@ while True:
             else:
                 if playerX >= 1125: #1200-75
                     playerX += 0
+                elif (playerX + 75 == npc1X) and (playerY == npc1Y):
+                    print("Aquí hay alguien")
+                    playerX -= 0
                 else: 
                     playerX += speedX
         elif event.key == pygame.K_UP:
@@ -59,6 +65,9 @@ while True:
             else:
                 if playerY <= 0:
                     playerY -= 0
+                elif (playerX == npc1X) and (playerY == npc1Y + 80):
+                    print("Aquí hay alguien")
+                    playerY -= 0
                 else: 
                     playerY -= speedY
         elif event.key == pygame.K_DOWN:
@@ -66,6 +75,9 @@ while True:
                 currentPlyayerAvatar = protagonista.avatarFront
             else:
                 if playerY >= 640: #800-160
+                    playerY += 0
+                elif (playerX == npc1X) and (playerY + 80 == npc1Y):
+                    print("Aquí hay alguien")
                     playerY += 0
                 else: 
                     playerY += speedY
