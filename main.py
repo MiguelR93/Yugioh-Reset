@@ -5,21 +5,25 @@ import classes.characters as characters
 
 pygame.init()
 
+# main values
+DISPLAYSURF = pygame.display.set_mode((1200,800))
+pygame.display.set_caption('Yu-Gi-Oh! Reset')
 clock = pygame.time.Clock()
 
 # # Characters -------
-speedX, speedY = 75, 160
+speedX, speedY = 75, 80
 # Player: 75x160
 playerX, playerY = 600, 320
 protagonista = characters.Player(1, "Drakdio", playerX, playerY, pygame.image.load("./images/characters/kaibaF01.png"), pygame.image.load("./images/characters/kaibaR01.png"), pygame.image.load("./images/characters/kaibaL01.png"), pygame.image.load("./images/characters/kaibaB01.png"))
 currentPlyayerAvatar = protagonista.avatarFront
+# def protagonistaAvatar(): DISPLAYSURF.blit(currentPlyayerAvatar, (playerX, playerY)) # funcionaría?
+
 
 # NPC:
-npc1X, npc1Y = 0, 0
+npc1X, npc1Y = 75, 320
 npc1 = characters.Npc(1, "Kaiba", npc1X, npc1Y, pygame.image.load("./images/characters/kaibaEvilF01.png"), pygame.image.load("./images/characters/kaibaEvilF01.png"), pygame.image.load("./images/characters/kaibaEvilF01.png"), pygame.image.load("./images/characters/kaibaEvilF01.png"), "Hola", "Duelo!")
 
-DISPLAYSURF = pygame.display.set_mode((1200,800))
-pygame.display.set_caption('Yu-Gi-Oh! Reset')
+
 
 while True:
     # detecting input ------
@@ -39,6 +43,9 @@ while True:
             else:
                 if playerX <= 0:
                     playerX += 0
+                elif (playerX == npc1X + 75) and (playerY == npc1Y):
+                    print("Aquí hay alguien")
+                    playerX += 0
                 else:    
                     playerX -= speedX
         elif event.key == pygame.K_RIGHT:
@@ -47,6 +54,9 @@ while True:
             else:
                 if playerX >= 1125: #1200-75
                     playerX += 0
+                elif (playerX + 75 == npc1X) and (playerY == npc1Y):
+                    print("Aquí hay alguien")
+                    playerX -= 0
                 else: 
                     playerX += speedX
         elif event.key == pygame.K_UP:
@@ -54,6 +64,9 @@ while True:
                 currentPlyayerAvatar = protagonista.avatarBack
             else:
                 if playerY <= 0:
+                    playerY -= 0
+                elif (playerX == npc1X) and (playerY == npc1Y + 80):
+                    print("Aquí hay alguien")
                     playerY -= 0
                 else: 
                     playerY -= speedY
@@ -63,11 +76,14 @@ while True:
             else:
                 if playerY >= 640: #800-160
                     playerY += 0
+                elif (playerX == npc1X) and (playerY + 80 == npc1Y):
+                    print("Aquí hay alguien")
+                    playerY += 0
                 else: 
                     playerY += speedY
     
-    # protagonistaAvatar = DISPLAYSURF.blit(protagonista.avatarFront, (playerX, playerY))
     protagonistaAvatar = DISPLAYSURF.blit(currentPlyayerAvatar, (playerX, playerY))
+    # protagonistaAvatar() # parece funcionar, pero cuál es el límite?
     
     # NPC:
     enemy1 = DISPLAYSURF.blit(npc1.avatarFront, (npc1X, npc1Y))
