@@ -1,6 +1,6 @@
 import csv
-import script.card as card
-import script.rush.cardsEffects as cardsEffects
+import classes.card as card
+import classes.rush.cardsEffects as cardsEffects
 # # from script.rush import *
 
 def openDeck():

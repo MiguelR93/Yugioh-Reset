@@ -3,6 +3,7 @@ from pygame.locals import *
 import classes.background as background
 import classes.characters as characters
 from script import duel
+import classes.openDeck as openDeck
 
 pygame.init()
 
@@ -18,11 +19,12 @@ playerX, playerY = 600, 320
 protagonista = characters.Player(1, "Drakdio", playerX, playerY, pygame.image.load("./images/characters/kaibaF01.png"), pygame.image.load("./images/characters/kaibaR01.png"), pygame.image.load("./images/characters/kaibaL01.png"), pygame.image.load("./images/characters/kaibaB01.png"))
 currentPlyayerAvatar = protagonista.avatarFront
 # def protagonistaAvatar(): DISPLAYSURF.blit(currentPlyayerAvatar, (playerX, playerY)) # funcionaría?
-
+protagonista.deck = openDeck.openDeck()
 
 # NPC:
 npc1X, npc1Y = 75, 320
 npc1 = characters.Npc(1, "Kaiba", npc1X, npc1Y, pygame.image.load("./images/characters/kaibaEvilF01.png"), pygame.image.load("./images/characters/kaibaEvilF01.png"), pygame.image.load("./images/characters/kaibaEvilF01.png"), pygame.image.load("./images/characters/kaibaEvilF01.png"), "Hola", "Duelo!")
+npc1.deck = openDeck.openDeck()
 
 # main loop:
 def gameLoop():

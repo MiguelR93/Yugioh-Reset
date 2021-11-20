@@ -6,11 +6,42 @@ pygame.init()
 # main values
 clock = pygame.time.Clock()
 
+# duel values
+TURNSCOUNTER = 0
+players = {}
+
+
+# duel tools
+def victory():
+    if players['p1'].victory == False:
+        return False
+    elif players['p2'].victory == False:
+        return False
+    else:
+        return True
+
+
+def turnStarts():
+    global TURNSCOUNTER
+    TURNSCOUNTER += 1
+
+
+def currentlyTurn():
+    return TURNSCOUNTER
 
 def duelStart(DISPLAYSURF, player, npc):
     print("Time to duel!")
     nameDuelFont = pygame.font.Font(None,100)
+
+    players['p1'] = player
+    players['p2'] = npc
     
+    players['p1'].oponent = npc
+    players['p2'].oponent = player
+
+    # Duel status:
+    tcText = nameDuelFont.render(f"Turno: {TURNSCOUNTER}", 0, (0, 0, 0), (255, 255, 255))
+
     # # characters
     # player
     playersName = nameDuelFont.render(f"{player.name}: {npc.lp}", 0, (0, 0, 0), (255, 255, 255))
@@ -28,6 +59,9 @@ def duelStart(DISPLAYSURF, player, npc):
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
+
+        # Duel status:
+        DISPLAYSURF.blit(tcText, (880,0))
 
         # # characters
         # player
