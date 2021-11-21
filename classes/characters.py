@@ -1,4 +1,3 @@
-from typing import get_type_hints
 import pygame, sys
 from pygame.locals import *
 

@@ -1,2 +1,4 @@
 images/
 classes/__pycache__
+script/__pycache__
+deck/*
