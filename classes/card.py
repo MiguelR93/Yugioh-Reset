@@ -36,6 +36,9 @@ class Monster(Card):
         self.summonedThisTurn = None
         self.canAttackThisTurn = 1
         self.canChangeItsPosition = None
+    
+    def normalSummon(self):
+        print("Normal Summon!")
 
 
 class MonsterNormal(Monster):
