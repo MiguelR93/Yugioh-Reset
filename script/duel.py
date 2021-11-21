@@ -158,6 +158,12 @@ def duelStart(DISPLAYSURF, player, npc):
             players[i].drawPhase()
             print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
             drawingAll(nameDuelFont, DISPLAYSURF, player, npc)
+            # MainPhase:
+            print("ahora en Main Phase")
+            # BattlePhase
+            print("ahora en Battle Phase")
+            # End Phase
+            print("ahora en End Phase")
 
             drawingAll(nameDuelFont, DISPLAYSURF, player, npc)
 
