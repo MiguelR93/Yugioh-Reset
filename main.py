@@ -36,8 +36,11 @@ def gameLoop():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
+        
+        myMouse = pygame.mouse.get_pos()
+        print(myMouse)
 
-        duel.duelStart(DISPLAYSURF, protagonista, npc1)
+        duel.duelStart(DISPLAYSURF, protagonista, npc1, myMouse)
 
         pygame.display.update()
         clock.tick(60)
@@ -110,4 +113,5 @@ def gameLoop():
 
 
 if __name__ == '__main__':
+    pygame.mouse.set_visible(1)
     gameLoop()

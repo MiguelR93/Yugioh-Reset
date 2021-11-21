@@ -91,7 +91,7 @@ def drawingAll(nameDuelFont, DISPLAYSURF, player, npc):
     clock.tick(1)
 
 
-def duelStart(DISPLAYSURF, player, npc):
+def duelStart(DISPLAYSURF, player, npc, myMouse):
     # global TURNSCOUNTER
     print("Time to duel!")
     nameDuelFont = pygame.font.Font(None,100)
@@ -103,6 +103,7 @@ def duelStart(DISPLAYSURF, player, npc):
     players['p2'].oponent = player
 
     while True:
+        # print(myMouse) # funciona!
         # # duel starts!
         # shuffle players' deck
         for i in players:
@@ -118,54 +119,6 @@ def duelStart(DISPLAYSURF, player, npc):
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
-
-            # print(f"Empieza el turno de {players[i].name}")
-            # turnStarts()
-            # print(currentlyTurn())
-            # print(f"Fase de robo de {players[i].name}")
-            # print(f"Fase principal de {players[i].name}")
-            # print(f"Fase de batalla de {players[i].name}")
-            # print(f"Fase final de {players[i].name}")
-            # # littleSleep()
-
-            # # Duel status: Lo moví porque aquí sí se actualiza :)
-            # tcText = nameDuelFont.render(f"Turno: {TURNSCOUNTER}", 0, (0, 0, 0), (255, 255, 255))
-
-            # # # characters
-            # # player
-            # playersName = nameDuelFont.render(f"{player.name}: {npc.lp}", 0, (0, 0, 0), (255, 255, 255))
-            # playersDeck = nameDuelFont.render(f"{len(player.deck)}", 0, (0, 0, 0), (255, 255, 255))
-            # playersGy = nameDuelFont.render(f"{len(player.gy)}", 0, (0, 0, 0), (255, 255, 255))
-            # # npc
-            # npcsName = nameDuelFont.render(f"{npc.name}: {npc.lp}", 0, (0, 0, 0), (255, 255, 255))
-            # npcsDeck = nameDuelFont.render(f"{len(npc.deck)}", 0, (0, 0, 0), (255, 255, 255))
-            # npcsGy = nameDuelFont.render(f"{len(npc.gy)}", 0, (0, 0, 0), (255, 255, 255))
-            # # npc
-
-
-            
-            
-            # DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
-
-
-            # # Duel status:
-            # DISPLAYSURF.blit(tcText, (880,0))
-
-            # # # characters
-            # # player
-            # DISPLAYSURF.blit(playersName, (0,730))
-            # DISPLAYSURF.blit(playersDeck, (1100,600))
-            # DISPLAYSURF.blit(playersGy, (1100,450))
-            # # npc
-            # DISPLAYSURF.blit(npcsName, (0,0))
-            # DISPLAYSURF.blit(npcsDeck, (550,150))
-            # DISPLAYSURF.blit(npcsGy, (550,300))
-
-
-            # print("ya debería actualizarse ._.")
-            # pygame.display.update()
-            # clock.tick(1)
-
             
 
 
