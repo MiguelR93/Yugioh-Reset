@@ -54,27 +54,28 @@ def duelStart(DISPLAYSURF, player, npc):
     # npc
 
     while True:
-        DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
+        for i in players:
+            DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
 
-        # Duel status:
-        DISPLAYSURF.blit(tcText, (880,0))
+            # Duel status:
+            DISPLAYSURF.blit(tcText, (880,0))
 
-        # # characters
-        # player
-        DISPLAYSURF.blit(playersName, (0,730))
-        DISPLAYSURF.blit(playersDeck, (1100,600))
-        DISPLAYSURF.blit(playersGy, (1100,450))
-        # npc
-        DISPLAYSURF.blit(npcsName, (0,0))
-        DISPLAYSURF.blit(npcsDeck, (550,150))
-        DISPLAYSURF.blit(npcsGy, (550,300))
+            # # characters
+            # player
+            DISPLAYSURF.blit(playersName, (0,730))
+            DISPLAYSURF.blit(playersDeck, (1100,600))
+            DISPLAYSURF.blit(playersGy, (1100,450))
+            # npc
+            DISPLAYSURF.blit(npcsName, (0,0))
+            DISPLAYSURF.blit(npcsDeck, (550,150))
+            DISPLAYSURF.blit(npcsGy, (550,300))
 
-        pygame.display.update()
-        clock.tick(60)
+            pygame.display.update()
+            clock.tick(60)
 
 
 # if __name__ == '__main__':
