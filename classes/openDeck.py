@@ -1,3 +1,6 @@
+import pygame, sys
+from pygame.locals import *
+
 import csv
 import classes.card as card
 import classes.rush.cardsEffects as cardsEffects
@@ -14,18 +17,19 @@ def openDeck():
     deckResult = []
 
     for i in deckOrigin:
-        if "Dragonic Pressure" in i[1]:
-            newObject = cardsEffects.DragonicPressure(
-                i[0],
-                i[1],
-                i[2],
-                i[3],
-                i[4],
-                i[5]
-            )
-            deckResult.append(newObject)
-
-        elif "normal" in i[8]:
+    #     if "Dragonic Pressure" in i[1]:
+    #         newObject = cardsEffects.DragonicPressure(
+    #             i[0],
+    #             i[1],
+    #             i[2],
+    #             i[3],
+    #             i[4],
+    #             i[5]
+    #         )
+    #         deckResult.append(newObject)
+        
+        if "normal" in i[8]:
+        # elif "normal" in i[8]:
             newObject = card.MonsterNormal(
                 i[0],
                 i[1],
@@ -36,7 +40,8 @@ def openDeck():
                 i[6],
                 i[7],
                 i[8],
-                i[9]
+                i[9],
+                pygame.image.load("images/cards/monster.png")
             )
             deckResult.append(newObject)
 
@@ -52,18 +57,45 @@ def openDeck():
                 i[7],
                 i[8],
                 i[9],
-                i[10]
+                i[10],
+                pygame.image.load("images/cards/monsterEff.png")
             )
             deckResult.append(newObject)
             
-        elif ("SPELL" in i[2]) or ("TRAP" in i[2]):
+        # elif ("SPELL" in i[2]) or ("TRAP" in i[2]):
+        #     newObject = card.SpellTrap(
+        #         i[0],
+        #         i[1],
+        #         i[2],
+        #         i[3],
+        #         i[4],
+        #         i[5]
+        #     )
+        #     deckResult.append(newObject)
+
+            
+        elif ("TRAP" in i[2]):
             newObject = card.SpellTrap(
                 i[0],
                 i[1],
                 i[2],
                 i[3],
                 i[4],
-                i[5]
+                i[5],
+                pygame.image.load("images/cards/trap.png")
+            )
+            deckResult.append(newObject)
+
+            
+        elif ("SPELL" in i[2]):
+            newObject = card.SpellTrap(
+                i[0],
+                i[1],
+                i[2],
+                i[3],
+                i[4],
+                i[5],
+                pygame.image.load("images/cards/spell.png")
             )
             deckResult.append(newObject)
 

@@ -1,6 +1,7 @@
 import pygame, sys, time
 from pygame.locals import *
 import classes.background as background
+import classes.card as card
 
 pygame.init()
 # main values
@@ -36,7 +37,12 @@ def currentlyTurn():
 def printHand(DISPLAYSURF, character, characterHandY):
     CHARACTERHAND = 500
     for i in character.hand:
-        pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (CHARACTERHAND, characterHandY, 50, 50), 2)
+        # if isinstance(i, card.MonsterNormal):
+        #     print("sí es monstruo nomrla!")
+        #     DISPLAYSURF.blit(i.illustration, (CHARACTERHAND, characterHandY))
+        # else:
+        #     pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (CHARACTERHAND, characterHandY, 50, 50), 2)
+        DISPLAYSURF.blit(i.illustration, (CHARACTERHAND, characterHandY))
         CHARACTERHAND += (1150-500)/len(character.hand)
 
 
