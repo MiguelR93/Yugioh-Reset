@@ -47,11 +47,7 @@ def drawingAll(nameDuelFont, DISPLAYSURF, player, npc):
     npcsName = nameDuelFont.render(f"{npc.name}: {npc.lp}", 0, (0, 0, 0), (255, 255, 255))
     npcsDeck = nameDuelFont.render(f"{len(npc.deck)}", 0, (0, 0, 0), (255, 255, 255))
     npcsGy = nameDuelFont.render(f"{len(npc.gy)}", 0, (0, 0, 0), (255, 255, 255))
-    # npc
 
-
-    
-    
     DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
 
 
@@ -63,13 +59,23 @@ def drawingAll(nameDuelFont, DISPLAYSURF, player, npc):
     DISPLAYSURF.blit(playersName, (0,730))
     DISPLAYSURF.blit(playersDeck, (1100,600))
     DISPLAYSURF.blit(playersGy, (1100,450))
+    # drawing player's hand
+    PLAYERHAND = 500
+    for i in player.hand:
+        pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (PLAYERHAND, 700, 50, 50))
+        PLAYERHAND += 100
     # npc
     DISPLAYSURF.blit(npcsName, (0,0))
     DISPLAYSURF.blit(npcsDeck, (550,150))
     DISPLAYSURF.blit(npcsGy, (550,300))
+    # drawing npc's hand
+    NPCHAND = 500
+    for i in npc.hand:
+        pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (NPCHAND, 0, 50, 50))
+        NPCHAND += 100
 
 
-    print("ya debería actualizarse ._.")
+    # print("ya debería actualizarse ._.")
     pygame.display.update()
     clock.tick(1)
 
