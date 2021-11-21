@@ -26,12 +26,15 @@ def openDeck():
                 i[3],
                 i[4],
                 i[5],
-                pygame.image.load(f"images/cards/{i[1].replace(' ', '')}.png")
+                pygame.image.load(f"images/cards/{i[1].replace(' ', '').replace('-', '')}.png")
             )
             deckResult.append(newObject)
+        # elif "Rush Dragon Dragears" in i[1]:
+        #     pass
         
         elif "normal" in i[8]:
         # elif "normal" in i[8]:
+            print(i[1])
             newObject = card.MonsterNormal(
                 i[0],
                 i[1],
@@ -43,7 +46,7 @@ def openDeck():
                 i[7],
                 i[8],
                 i[9],
-                pygame.image.load("images/cards/monster.png")
+                pygame.image.load(f"images/cards/{i[1].replace(' ', '').replace('-', '')}.png")
             )
             deckResult.append(newObject)
 
@@ -60,7 +63,7 @@ def openDeck():
                 i[8],
                 i[9],
                 i[10],
-                pygame.image.load("images/cards/monsterEff.png")
+                pygame.image.load(f"images/cards/{i[1].replace(' ', '').replace('-', '')}.png")
             )
             deckResult.append(newObject)
             

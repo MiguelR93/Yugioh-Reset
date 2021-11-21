@@ -30,3 +30,11 @@ class DragonicPressure(card.SpellTrap):
     #             listCardEff.specialSummonDragonNvlFourOrLessFromGYInDFU(playerTurn)
     #     else:
     #         print("No puedes activar esta carta!")
+
+# class RushDragonDragears(card.MonsterEffect):
+#         def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, effect, illustration):
+#             super().__init__(id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, effect, illustration)
+
+class PhoenixDragon(card.MonsterEffect):
+        def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, effect, illustration):
+            super().__init__(id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, effect, illustration)
