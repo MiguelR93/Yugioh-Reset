@@ -150,7 +150,15 @@ def duelStart(DISPLAYSURF, player, npc):
             # clock.tick(1)
 
             
-            # print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
+
+
+            # # turns!
+            # drawPhase:
+            print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
+            players[i].drawPhase()
+            print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
+            drawingAll(nameDuelFont, DISPLAYSURF, player, npc)
+
             drawingAll(nameDuelFont, DISPLAYSURF, player, npc)
 
             

@@ -1,5 +1,6 @@
 import pygame, sys, random
 from pygame.locals import *
+import script.duel as duel
 
 class Character():
     def __init__(self, id, name, playerX, playerY, avatarFront, avatarRight, avatarLeft, avatarBack):
@@ -35,7 +36,7 @@ class Character():
         if self.cardsInHand() >= 5:
             self.drawACard()
         else:
-            while (len(self.hand) < 5) and (self.victory == True) and (self.oponent.victory == True): # el anterior era: while (len(self.hand) < 5) and (duel.victory() == True):
+            while (len(self.hand) < 5) and (duel.victory() == True):
                 self.drawACard()
 
 
