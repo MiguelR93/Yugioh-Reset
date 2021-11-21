@@ -33,7 +33,16 @@ def currentlyTurn():
     return TURNSCOUNTER
 
 
+def printHand(DISPLAYSURF, character, characterHandY):
+    CHARACTERHAND = 500
+    for i in character.hand:
+        pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (CHARACTERHAND, characterHandY, 50, 50), 2)
+        CHARACTERHAND += (1150-500)/len(character.hand)
+
+
 def drawingAll(nameDuelFont, DISPLAYSURF, player, npc):
+    DISPLAYSURF.fill((255, 255, 255))
+    DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
     # this should drawing all ;v
     # Duel status: Lo moví porque aquí sí se actualiza :)
     tcText = nameDuelFont.render(f"Turno: {TURNSCOUNTER}", 0, (0, 0, 0), (255, 255, 255))
@@ -48,7 +57,6 @@ def drawingAll(nameDuelFont, DISPLAYSURF, player, npc):
     npcsDeck = nameDuelFont.render(f"{len(npc.deck)}", 0, (0, 0, 0), (255, 255, 255))
     npcsGy = nameDuelFont.render(f"{len(npc.gy)}", 0, (0, 0, 0), (255, 255, 255))
 
-    DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
 
 
     # Duel status:
@@ -60,19 +68,22 @@ def drawingAll(nameDuelFont, DISPLAYSURF, player, npc):
     DISPLAYSURF.blit(playersDeck, (1100,600))
     DISPLAYSURF.blit(playersGy, (1100,450))
     # drawing player's hand
-    PLAYERHAND = 500
-    for i in player.hand:
-        pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (PLAYERHAND, 700, 50, 50))
-        PLAYERHAND += 100
+    # PLAYERHAND = 500
+    # for i in player.hand:
+    #     pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (PLAYERHAND, 700, 50, 50))
+    #     PLAYERHAND += (1150-500)/len(player.hand)
+    printHand(DISPLAYSURF, player, 700)
+        
     # npc
     DISPLAYSURF.blit(npcsName, (0,0))
     DISPLAYSURF.blit(npcsDeck, (550,150))
     DISPLAYSURF.blit(npcsGy, (550,300))
     # drawing npc's hand
-    NPCHAND = 500
-    for i in npc.hand:
-        pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (NPCHAND, 0, 50, 50))
-        NPCHAND += 100
+    # NPCHAND = 500
+    # for i in npc.hand:
+    #     pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (NPCHAND, 0, 50, 50))
+    #     NPCHAND += (1150-500)/len(npc.hand)
+    printHand(DISPLAYSURF, npc, 0)
 
 
     # print("ya debería actualizarse ._.")
