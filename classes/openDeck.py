@@ -3,7 +3,8 @@ from pygame.locals import *
 
 import csv
 import classes.card as card
-import classes.rush.cardsEffects as cardsEffects
+# import classes.rush.cardsEffects as cardsEffects
+import classes.cardsEffects as cardsEffects
 # # from script.rush import *
 
 def openDeck():
@@ -17,18 +18,19 @@ def openDeck():
     deckResult = []
 
     for i in deckOrigin:
-    #     if "Dragonic Pressure" in i[1]:
-    #         newObject = cardsEffects.DragonicPressure(
-    #             i[0],
-    #             i[1],
-    #             i[2],
-    #             i[3],
-    #             i[4],
-    #             i[5]
-    #         )
-    #         deckResult.append(newObject)
+        if "Dragonic Pressure" in i[1]:
+            newObject = cardsEffects.DragonicPressure(
+                i[0],
+                i[1],
+                i[2],
+                i[3],
+                i[4],
+                i[5],
+                pygame.image.load(f"images/cards/{i[1].replace(' ', '')}.png")
+            )
+            deckResult.append(newObject)
         
-        if "normal" in i[8]:
+        elif "normal" in i[8]:
         # elif "normal" in i[8]:
             newObject = card.MonsterNormal(
                 i[0],
