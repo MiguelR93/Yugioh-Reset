@@ -20,9 +20,9 @@ class Card():
         self.rectangulo = pygame.Rect(self.cardX, self.cardY, 81, 118)
 
     
-    def options(self):
-        # print("Aquí!")
-        print(f"Estás en {self.name}")
+    # def options(self):
+    #     # print("Aquí!")
+    #     print(f"Estás en {self.name}")
 
 class CardEffect():
     def __init__(self, effect):
@@ -31,10 +31,8 @@ class CardEffect():
 
 class Monster(Card):
     
-    def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text,
-        illustration):
-        super().__init__(id, name, cardType, text,
-        illustration)
+    def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, illustration):
+        super().__init__(id, name, cardType, text, illustration)
         self.attribute = attribute
         self.level = int(level)
         self.typeMonster = typeMonster
@@ -52,14 +50,18 @@ class Monster(Card):
         self.canAttackThisTurn = 1
         self.canChangeItsPosition = None
     
+    def options(self):
+        if self.placeOnGame == "hand":
+            print(f"{self.name} can be normal summoned")
+
+
     def normalSummon(self):
         print("Normal Summon!")
 
 
 class MonsterNormal(Monster):
 
-    def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text,
-    illustration):
+    def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, illustration):
         super().__init__(id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text,
         illustration)
 
