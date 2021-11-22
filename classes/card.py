@@ -1,3 +1,8 @@
+import pygame, sys, time
+from pygame.locals import *
+
+pygame.init()
+
 class Card():
 
     def __init__(self, id, name, cardType, text,
@@ -7,7 +12,17 @@ class Card():
         self.cardType = cardType
         self.text = text
         self.illustration = illustration
+        self.cardX = None
+        self.cardY = None
+        self.rectangulo = None
+    
+    def makeARect(self):
+        self.rectangulo = pygame.Rect(self.cardX, self.cardY, 81, 118)
 
+    
+    def options(self):
+        # print("Aquí!")
+        print(f"Estás en {self.name}")
 
 class CardEffect():
     def __init__(self, effect):

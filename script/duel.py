@@ -38,11 +38,14 @@ def printHand(DISPLAYSURF, character, characterHandY):
     CHARACTERHAND = 500
     for i in character.hand:
         # if isinstance(i, card.MonsterNormal):
-        #     print("sí es monstruo nomrla!")
+        #     print("sí es monstruo nomral!")
         #     DISPLAYSURF.blit(i.illustration, (CHARACTERHAND, characterHandY))
         # else:
         #     pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (CHARACTERHAND, characterHandY, 50, 50), 2)
+        pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (CHARACTERHAND, characterHandY, 82, 118), 0)
         DISPLAYSURF.blit(i.illustration, (CHARACTERHAND, characterHandY))
+        i.cardX, i.cardY = CHARACTERHAND, characterHandY
+        i.makeARect()
         CHARACTERHAND += (1150-500)/len(character.hand)
 
 
@@ -94,7 +97,7 @@ def drawingAll(nameDuelFont, DISPLAYSURF, player, npc):
 
     # print("ya debería actualizarse ._.")
     pygame.display.update()
-    clock.tick(1)
+    clock.tick(3)
 
 
 def duelStart(DISPLAYSURF, player, npc, myMouse):
@@ -126,6 +129,9 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
                     pygame.quit()
                     sys.exit()
             
+            myMouse = pygame.mouse.get_pos()
+            print(myMouse)
+            
 
 
             # # turns!
@@ -140,6 +146,19 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
             print("ahora en Battle Phase")
             # End Phase
             print("ahora en End Phase")
+        
+            for a, i in enumerate(players[i].hand):
+                # detecta si el mouse está sobre alguna carta de la mano
+                # if myMouse == (i.rectangulo.left, i.rectangulo.top):
+                #     print("Estás en la figura")
+                #     littleSleep()
+                if (myMouse[0] >= i.rectangulo.left) and (myMouse[0] <= i.rectangulo.left + i.rectangulo.width) and (myMouse[1] >= i.rectangulo.top) and (myMouse[1] <= i.rectangulo.top + i.rectangulo.height):
+                    # print(f"dentro del rectángulo {a}")
+                    i.options()
+                    # littleSleep()
+                # else:
+                #     print(f"Rectángulo: {i.rectangulo.left}, {i.rectangulo.top}")
+                #     littleSleep()
 
             drawingAll(nameDuelFont, DISPLAYSURF, player, npc)
 
