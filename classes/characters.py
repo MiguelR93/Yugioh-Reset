@@ -49,6 +49,7 @@ class Character():
             print("No hay cartas en el deck")
             self.victory = False
         else:
+            self.deck[0].placeOnGame = "hand" # experimento
             self.hand.append(self.deck[0]) # añade la carta del deck a la mano
             self.deck.remove(self.deck[0]) # quita del deck la carta añadida a la mano
 

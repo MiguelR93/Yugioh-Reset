@@ -5,13 +5,13 @@ pygame.init()
 
 class Card():
 
-    def __init__(self, id, name, cardType, text,
-        illustration):
+    def __init__(self, id, name, cardType, text, illustration):
         self.id = id
         self.name = name
         self.cardType = cardType
         self.text = text
         self.illustration = illustration
+        self.placeOnGame = None # experimento
         self.cardX = None
         self.cardY = None
         self.rectangulo = None
