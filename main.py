@@ -5,6 +5,9 @@ import classes.characters as characters
 from script import duel
 import classes.openDeck as openDeck
 
+
+import script.gameStart as gameStart
+
 pygame.init()
 
 # main values
@@ -28,7 +31,7 @@ npc1 = characters.Npc(1, "Kaiba", npc1X, npc1Y, pygame.image.load("./images/char
 npc1.deck = openDeck.openDeck()
 
 # main loop:
-def gameLoop():
+def mainLoop():
     while True:
         # print("Hola!")
     # detecting input ------
@@ -40,7 +43,9 @@ def gameLoop():
         myMouse = pygame.mouse.get_pos()
         print(myMouse)
 
-        duel.duelStart(DISPLAYSURF, protagonista, npc1, myMouse)
+        gameStart.gameStart(DISPLAYSURF)
+
+        # duel.duelStart(DISPLAYSURF, protagonista, npc1, myMouse)
 
         pygame.display.update()
         clock.tick(60)
@@ -114,4 +119,4 @@ def gameLoop():
 
 if __name__ == '__main__':
     pygame.mouse.set_visible(1)
-    gameLoop()
+    mainLoop()
