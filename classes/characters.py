@@ -13,6 +13,8 @@ class Character():
         self.avatarBack = avatarBack
         self.playerX = playerX
         self.playerY = playerY
+        self.speedX = 75
+        self.speedY = 80
 
         # on duel:
         self.oponent = None

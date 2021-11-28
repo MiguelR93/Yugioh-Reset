@@ -11,19 +11,13 @@ pygame.init()
 WHITE = (255, 255, 255)
 
 
-
-# def firstWindow():
-#     firstFont = pygame.font.Font(None, 30)
-#     newGame = firstFont.render("Nueva partida", (0,0,255))
-#     return newGame
-
 def gameStart(DISPLAYSURF):
     backColor = None
     backColor2 = None
     backPlace = 0
     firstFont = pygame.font.Font(None, 80)
-    
-    while True:
+    outLoop = 0
+    while outLoop == 0:
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
@@ -33,7 +27,14 @@ def gameStart(DISPLAYSURF):
                 if (event.key == pygame.K_LEFT) and (backPlace == 1):
                     backPlace -= 1
                 elif (event.key == pygame.K_RIGHT) and (backPlace == 0):
-                    backPlace += 1        
+                    backPlace += 1
+
+                # elif event.type == pygame.KEYDOWN:
+                elif (event.key == pygame.K_RETURN) and (backPlace == 1): # Enter
+                    print("Partida provisional")
+                    outLoop += 1
+                elif (event.key == pygame.K_RETURN) and (backPlace == 0): # Enter
+                    print("Nuevo juego")
 
         DISPLAYSURF.fill((255,0,0))
         if backPlace == 0:
