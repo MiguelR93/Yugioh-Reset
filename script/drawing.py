@@ -11,7 +11,7 @@ clock = pygame.time.Clock()
 # Fonts:
 turnCounterFont = pygame.font.Font(None,40)
 phaseFont = pygame.font.Font(None,40)
-nameDuelFont = pygame.font.Font(None,100) # genérico
+nameDuelFont = pygame.font.Font(None,40) # genérico
 
 def printHand(DISPLAYSURF, character, characterHandY):
     CHARACTERHAND = 500
@@ -61,7 +61,7 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase):
     pygame.draw.rect(DISPLAYSURF, (0,0,255), npcNameRect)
     pygame.draw.polygon(DISPLAYSURF, (0,255,0), playerLifeAll, 0)
     pygame.draw.polygon(DISPLAYSURF, (0,255,0), npcLifeAll, 0)
-    pygame.draw.rect(DISPLAYSURF, (255,255,0), gameField, 0)
+    # pygame.draw.rect(DISPLAYSURF, (255,255,0), gameField, 0)
     # # this should drawing all ;v
     # # Duel status: Lo moví porque aquí sí se actualiza :)
     tcText = turnCounterFont.render(f"Turno:", 0, (0, 0, 0), (255, 255, 255))
@@ -99,43 +99,49 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase):
 
 
 
-    # # # characters
-    # # player
-    # playersName = nameDuelFont.render(f"{player.name}: {npc.lp}", 0, (0, 0, 0), (255, 255, 255))
-    # playersDeck = nameDuelFont.render(f"{len(player.deck)}", 0, (0, 0, 0), (255, 255, 255))
-    # playersGy = nameDuelFont.render(f"{len(player.gy)}", 0, (0, 0, 0), (255, 255, 255))
-    # # npc
-    # npcsName = nameDuelFont.render(f"{npc.name}: {npc.lp}", 0, (0, 0, 0), (255, 255, 255))
-    # npcsDeck = nameDuelFont.render(f"{len(npc.deck)}", 0, (0, 0, 0), (255, 255, 255))
-    # npcsGy = nameDuelFont.render(f"{len(npc.gy)}", 0, (0, 0, 0), (255, 255, 255))
+    # # characters
+    # player
+    playersName = nameDuelFont.render(f"{player.name}", 0, (0, 0, 0))
+    playersLP = nameDuelFont.render(f"{npc.lp}", 0, (0, 0, 0))
+    playersDeck = nameDuelFont.render(f"{len(player.deck)}", 0, (0, 0, 0), (255, 255, 255))
+    playersGy = nameDuelFont.render(f"{len(player.gy)}", 0, (0, 0, 0), (255, 255, 255))
+    # npc
+    npcsName = nameDuelFont.render(f"{npc.name}", 0, (0, 0, 0))
+    npcsLP = nameDuelFont.render(f"{npc.lp}", 0, (0, 0, 0))
+    npcsDeck = nameDuelFont.render(f"{len(npc.deck)}", 0, (0, 0, 0), (255, 255, 255))
+    npcsGy = nameDuelFont.render(f"{len(npc.gy)}", 0, (0, 0, 0), (255, 255, 255))
 
 
 
-
-    
-
-    # # # characters
-    # # player
-    # DISPLAYSURF.blit(playersName, (0,730))
-    # DISPLAYSURF.blit(playersDeck, (1100,600))
-    # DISPLAYSURF.blit(playersGy, (1100,450))
-    # # drawing player's hand
-    # # PLAYERHAND = 500
-    # # for i in player.hand:
-    # #     pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (PLAYERHAND, 700, 50, 50))
-    # #     PLAYERHAND += (1150-500)/len(player.hand)
-    # printHand(DISPLAYSURF, player, 700)
-        
-    # # npc
-    # DISPLAYSURF.blit(npcsName, (0,0))
+    # # drawing characters
+    # npc
+    DISPLAYSURF.blit(npcsName, (975,63))
+    DISPLAYSURF.blit(npcsLP, (975,13))
     # DISPLAYSURF.blit(npcsDeck, (550,150))
     # DISPLAYSURF.blit(npcsGy, (550,300))
-    # # drawing npc's hand
-    # # NPCHAND = 500
-    # # for i in npc.hand:
-    # #     pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (NPCHAND, 0, 50, 50))
-    # #     NPCHAND += (1150-500)/len(npc.hand)
-    # printHand(DISPLAYSURF, npc, 0)
+    # drawing npc's hand
+    # NPCHAND = 500
+    # for i in npc.hand:
+    #     pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (NPCHAND, 0, 50, 50))
+    #     NPCHAND += (1150-500)/len(npc.hand)
+    printHand(DISPLAYSURF, npc, 100)
+
+    pygame.draw.rect(DISPLAYSURF, (255,255,0), gameField, 0)
+
+
+    # player
+    DISPLAYSURF.blit(playersName, (150,63))
+    DISPLAYSURF.blit(playersLP, (151,13))
+    # DISPLAYSURF.blit(playersDeck, (1100,600))
+    # DISPLAYSURF.blit(playersGy, (1100,450))
+    # drawing player's hand
+    # PLAYERHAND = 500
+    # for i in player.hand:
+    #     pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (PLAYERHAND, 700, 50, 50))
+    #     PLAYERHAND += (1150-500)/len(player.hand)
+    printHand(DISPLAYSURF, player, 700)
+        
+
 
 
     # print("ya debería actualizarse ._.")
