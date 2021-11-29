@@ -32,13 +32,43 @@ def drawingAll(DISPLAYSURF, player, npc):
     # DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
     playerFace = Rect(0,0,150,150)
     npcFace = Rect(1050,0,150,150)
-    playerLifeAll = ((151,0),(550,0),(500,50),(151,50))
+    playerNameRect = Rect(150,50,250,50)
+    npcNameRect = Rect(800,50,250,50)
+    playerLifeAll = ((150,0),(550,0),(500,50),(151,50))
     npcLifeAll = ((1049,0),(651,0),(700,50),(1049,50))
 
-    gameField = Rect(267,178,665,532)
+    # Phases rect
+    drawPhaseRect = Rect(975,225,175,75)
+    mainPhaseRect = Rect(975,325,175,75)
+    battlePhaseRect = Rect(975,425,175,75)
+    endPhaseRect = Rect(975,525,175,75)
+
+    pygame.draw.rect(DISPLAYSURF, (255,0,0), drawPhaseRect)
+    pygame.draw.rect(DISPLAYSURF, (255,0,0), mainPhaseRect)
+    pygame.draw.rect(DISPLAYSURF, (255,0,0), battlePhaseRect)
+    pygame.draw.rect(DISPLAYSURF, (255,0,0), endPhaseRect)
+
+
+    # card
+    cardImageNameRect = Rect(0,200,250,50)
+    cardImageRect = Rect(0,200,250,250)
+    cardImageIconRect = Rect(0,450,250,50)
+    cardImageAtkDefRect = Rect(0,500,250,50)
+    cardImageTextRect = Rect(0,550,250,250)
+
+    pygame.draw.rect(DISPLAYSURF, (0,200,0), cardImageRect)
+    pygame.draw.rect(DISPLAYSURF, (200,0,0), cardImageNameRect)
+    pygame.draw.rect(DISPLAYSURF, (0,0,200), cardImageIconRect)
+    pygame.draw.rect(DISPLAYSURF, (200,200,0), cardImageAtkDefRect)
+    pygame.draw.rect(DISPLAYSURF, (200,0,200), cardImageTextRect, )
+
+
+    gameField = Rect(300,200,625,500)
 
     pygame.draw.rect(DISPLAYSURF, (255,0,0), playerFace)
     pygame.draw.rect(DISPLAYSURF, (0,0,255), npcFace)
+    pygame.draw.rect(DISPLAYSURF, (255,0,0), playerNameRect)
+    pygame.draw.rect(DISPLAYSURF, (0,0,255), npcNameRect)
     pygame.draw.polygon(DISPLAYSURF, (0,255,0), playerLifeAll, 0)
     pygame.draw.polygon(DISPLAYSURF, (0,255,0), npcLifeAll, 0)
     pygame.draw.rect(DISPLAYSURF, (255,255,0), gameField, 0)
