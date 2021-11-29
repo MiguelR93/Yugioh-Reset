@@ -129,7 +129,7 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
         for i in players:
             while len(players[i].hand) < 4:
                 players[i].drawACard()
-                drawing.drawingAll(DISPLAYSURF, player, npc)
+                drawing.drawingAll(DISPLAYSURF, player, npc, None)
         for i in players:
             turnStarts()
             for event in pygame.event.get():
@@ -147,14 +147,17 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
             print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
             players[i].drawPhase()
             print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
-            drawing.drawingAll(DISPLAYSURF, player, npc)
+            drawing.drawingAll(DISPLAYSURF, player, npc, "DrawPhase")
 
             # MainPhase:
             print("ahora en Main Phase")
+            drawing.drawingAll(DISPLAYSURF, player, npc, "MainPhase")
             # BattlePhase
             print("ahora en Battle Phase")
+            drawing.drawingAll(DISPLAYSURF, player, npc, "BattlePhase")
             # End Phase
             print("ahora en End Phase")
+            drawing.drawingAll(DISPLAYSURF, player, npc, "EndPhase")
         
             # for a, i in enumerate(players[i].hand):
             #     # detecta si el mouse está sobre alguna carta de la mano
@@ -169,7 +172,7 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
             #     #     print(f"Rectángulo: {i.rectangulo.left}, {i.rectangulo.top}")
             #     #     littleSleep()
 
-            drawing.drawingAll(DISPLAYSURF, player, npc)
+            # drawing.drawingAll(DISPLAYSURF, player, npc, None)
 
 
 # # Duel tools ----------------

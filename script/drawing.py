@@ -10,6 +10,7 @@ clock = pygame.time.Clock()
 
 # Fonts:
 turnCounterFont = pygame.font.Font(None,40)
+phaseFont = pygame.font.Font(None,40)
 nameDuelFont = pygame.font.Font(None,100) # genérico
 
 def printHand(DISPLAYSURF, character, characterHandY):
@@ -27,7 +28,7 @@ def printHand(DISPLAYSURF, character, characterHandY):
         CHARACTERHAND += (1150-500)/len(character.hand)
 
 
-def drawingAll(DISPLAYSURF, player, npc):
+def drawingAll(DISPLAYSURF, player, npc, currentlyPhase):
     DISPLAYSURF.fill((255, 255, 255))
     # DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
     playerFace = Rect(0,0,150,150)
@@ -36,17 +37,6 @@ def drawingAll(DISPLAYSURF, player, npc):
     npcNameRect = Rect(800,50,250,50)
     playerLifeAll = ((150,0),(550,0),(500,50),(151,50))
     npcLifeAll = ((1049,0),(651,0),(700,50),(1049,50))
-
-    # Phases rect
-    drawPhaseRect = Rect(975,225,175,75)
-    mainPhaseRect = Rect(975,325,175,75)
-    battlePhaseRect = Rect(975,425,175,75)
-    endPhaseRect = Rect(975,525,175,75)
-
-    pygame.draw.rect(DISPLAYSURF, (255,0,0), drawPhaseRect)
-    pygame.draw.rect(DISPLAYSURF, (255,0,0), mainPhaseRect)
-    pygame.draw.rect(DISPLAYSURF, (255,0,0), battlePhaseRect)
-    pygame.draw.rect(DISPLAYSURF, (255,0,0), endPhaseRect)
 
 
     # card
@@ -80,6 +70,33 @@ def drawingAll(DISPLAYSURF, player, npc):
     # Duel status:
     DISPLAYSURF.blit(tcText, (555,0))
     DISPLAYSURF.blit(tcTextNumber, (585,30))
+
+
+    # Phases rect
+    drawPhaseRect = [Rect(975,225,175,75), "DrawPhase"]
+    mainPhaseRect = [Rect(975,325,175,75), "MainPhase"]
+    battlePhaseRect = [Rect(975,425,175,75), "BattlePhase"]
+    endPhaseRect = [Rect(975,525,175,75), "EndPhase"]
+
+    tcText = turnCounterFont.render(f"Turno:", 0, (0, 0, 0), (255, 255, 255))
+
+    phases = (drawPhaseRect, mainPhaseRect, battlePhaseRect, endPhaseRect,)
+
+    # pygame.draw.rect(DISPLAYSURF, (255,0,0), drawPhaseRect)
+    # pygame.draw.rect(DISPLAYSURF, (255,0,0), mainPhaseRect)
+    # pygame.draw.rect(DISPLAYSURF, (255,0,0), battlePhaseRect)
+    # pygame.draw.rect(DISPLAYSURF, (255,0,0), endPhaseRect)
+    for i in phases: # phaseFont
+        if currentlyPhase == i[1]:
+            pygame.draw.rect(DISPLAYSURF, (255,0,0), i[0])
+            phaseText = phaseFont.render(i[1], 0, (0,0, 255))
+            DISPLAYSURF.blit(phaseText, (i[0].left,i[0].top+25))
+        else:
+            pygame.draw.rect(DISPLAYSURF, (0,0,0), i[0])
+            phaseText = phaseFont.render(i[1], 0, (255, 255, 255))
+            # phaseText = phaseFont.render(":)", 0, (0,0, 255))
+            DISPLAYSURF.blit(phaseText, (i[0].left,i[0].top+25))
+
 
 
     # # # characters
