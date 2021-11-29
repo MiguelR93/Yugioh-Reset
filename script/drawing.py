@@ -9,7 +9,7 @@ pygame.init()
 clock = pygame.time.Clock()
 
 # Fonts:
-turnCounterFont = pygame.font.Font(None,60)
+turnCounterFont = pygame.font.Font(None,40)
 nameDuelFont = pygame.font.Font(None,100) # genérico
 
 def printHand(DISPLAYSURF, character, characterHandY):
@@ -30,10 +30,10 @@ def printHand(DISPLAYSURF, character, characterHandY):
 def drawingAll(DISPLAYSURF, player, npc):
     DISPLAYSURF.fill((255, 255, 255))
     # DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
-    playerFace = Rect(0,0,133,133)
-    npcFace = Rect(1067,0,133,133)
-    playerLifeAll = ((134,0),(533,0), (444,88), (134,88))
-    npcLifeAll = ((1066,0),(667,0), (756,88), (1066,88))
+    playerFace = Rect(0,0,150,150)
+    npcFace = Rect(1050,0,150,150)
+    playerLifeAll = ((151,0),(550,0),(500,50),(151,50))
+    npcLifeAll = ((1049,0),(651,0),(700,50),(1049,50))
 
     gameField = Rect(267,178,665,532)
 
@@ -45,11 +45,11 @@ def drawingAll(DISPLAYSURF, player, npc):
     # # this should drawing all ;v
     # # Duel status: Lo moví porque aquí sí se actualiza :)
     tcText = turnCounterFont.render(f"Turno:", 0, (0, 0, 0), (255, 255, 255))
-    tcTextNumber = turnCounterFont.render(f"{duel.TURNSCOUNTER}", 0, (0, 0, 0), (255, 255, 255))
+    tcTextNumber = turnCounterFont.render(duel.turnCounterText(), 0, (0, 0, 0), (255, 255, 255))
 
     # Duel status:
-    DISPLAYSURF.blit(tcText, (535,0))
-    DISPLAYSURF.blit(tcTextNumber, (585,50))
+    DISPLAYSURF.blit(tcText, (555,0))
+    DISPLAYSURF.blit(tcTextNumber, (585,30))
 
 
     # # # characters

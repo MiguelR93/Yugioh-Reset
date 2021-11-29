@@ -26,6 +26,13 @@ def victory():
         return True
 
 
+def turnCounterText():
+    if TURNSCOUNTER < 10:
+        return f"0{TURNSCOUNTER}"
+    else:
+        return f"{TURNSCOUNTER}"
+
+
 def turnStarts():
     global TURNSCOUNTER
     TURNSCOUNTER += 1
@@ -141,6 +148,7 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
             players[i].drawPhase()
             print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
             drawing.drawingAll(DISPLAYSURF, player, npc)
+
             # MainPhase:
             print("ahora en Main Phase")
             # BattlePhase
