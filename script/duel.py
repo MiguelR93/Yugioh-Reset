@@ -2,7 +2,7 @@ import pygame, sys, time
 from pygame.locals import *
 import classes.background as background
 import classes.card as card
-from script import drawing, mainPhase, battlePhase, endPhase
+from script import drawing, drawPhase, mainPhase, battlePhase, endPhase
 
 pygame.init()
 # main values
@@ -146,10 +146,11 @@ def duelStart(DISPLAYSURF, player, npc):
 
             # # turns!
             # drawPhase:
-            print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
-            players[i].drawPhase()
-            print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
-            drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, "DrawPhase")
+            # print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
+            # players[i].drawPhase()
+            # print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
+            # drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, "DrawPhase")
+            drawPhase.drawPhase(DISPLAYSURF, player, npc, players[i])
 
             # MainPhase:
             print("ahora en Main Phase")

@@ -140,4 +140,4 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase):
 
     # print("ya debería actualizarse ._.")
     pygame.display.update()
-    clock.tick(60)
+    clock.tick(10)
