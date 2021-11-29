@@ -19,7 +19,7 @@ def battlePhase(DISPLAYSURF, player, npc):
         print(myMouse)
         
         if (myMouse[0] >= 975) and (myMouse[0] <= 975 + 175) and (myMouse[1]  >= 525) and (myMouse[1] <= 525 + 75):
-            print(">:VVV")
+            print("Sobre EP")
             if pygame.mouse.get_pressed()[0] == True:
                 # return "EndPhase"
                 break

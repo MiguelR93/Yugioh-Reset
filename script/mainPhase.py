@@ -20,12 +20,12 @@ def mainPhase(DISPLAYSURF, player, npc):
 
         # detectando que elija BP
         if (myMouse[0] >= 975) and (myMouse[0] <= 975 + 175) and (myMouse[1]  >= 425) and (myMouse[1] <= 425 + 75):
-            print(">:V")
+            print("Sobre BP")
             if pygame.mouse.get_pressed()[0] == True:
                 # break # ir a BP
                 return "BattlePhase"
         if (myMouse[0] >= 975) and (myMouse[0] <= 975 + 175) and (myMouse[1]  >= 525) and (myMouse[1] <= 525 + 75):
-            print(">:VVV")
+            print("Sobre EP")
             if pygame.mouse.get_pressed()[0] == True:
                 # break # ir a BP
                 return "EndPhase"
