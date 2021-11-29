@@ -2,7 +2,7 @@ import pygame, sys, time
 from pygame.locals import *
 import classes.background as background
 import classes.card as card
-from script import drawing
+from script import drawing, mainPhase, battlePhase, endPhase
 
 pygame.init()
 # main values
@@ -57,7 +57,7 @@ def currentlyTurn():
 #         CHARACTERHAND += (1150-500)/len(character.hand)
 
 
-# def drawingAll(nameDuelFont, DISPLAYSURF, player, npc):
+# def drawingAll(myMouse,nameDuelFont, DISPLAYSURF, player, npc):
 #     DISPLAYSURF.fill((255, 255, 255))
 #     DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
 #     # this should drawing all ;v
@@ -108,7 +108,7 @@ def currentlyTurn():
 #     clock.tick(3)
 
 
-def duelStart(DISPLAYSURF, player, npc, myMouse):
+def duelStart(DISPLAYSURF, player, npc):
     # global TURNSCOUNTER
     print("Time to duel!")
     nameDuelFont = pygame.font.Font(None,100)
@@ -120,6 +120,9 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
     players['p2'].oponent = player
 
     while True:
+        myMouse = pygame.mouse.get_pos()
+        print(myMouse)
+
         # print(myMouse) # funciona!
         # # duel starts!
         # shuffle players' deck
@@ -129,7 +132,7 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
         for i in players:
             while len(players[i].hand) < 4:
                 players[i].drawACard()
-                drawing.drawingAll(DISPLAYSURF, player, npc, None)
+                drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, None)
         for i in players:
             turnStarts()
             for event in pygame.event.get():
@@ -137,8 +140,7 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
                     pygame.quit()
                     sys.exit()
             
-            myMouse = pygame.mouse.get_pos()
-            print(myMouse)
+
             
 
 
@@ -147,17 +149,20 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
             print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
             players[i].drawPhase()
             print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
-            drawing.drawingAll(DISPLAYSURF, player, npc, "DrawPhase")
+            drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, "DrawPhase")
 
             # MainPhase:
             print("ahora en Main Phase")
-            drawing.drawingAll(DISPLAYSURF, player, npc, "MainPhase")
-            # BattlePhase
-            print("ahora en Battle Phase")
-            drawing.drawingAll(DISPLAYSURF, player, npc, "BattlePhase")
-            # End Phase
-            print("ahora en End Phase")
-            drawing.drawingAll(DISPLAYSURF, player, npc, "EndPhase")
+            # drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, "MainPhase")
+            if mainPhase.mainPhase(DISPLAYSURF, player, npc) == "BattlePhase":
+                # BattlePhase
+                print("ahora en Battle Phase")
+                drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, "BattlePhase")
+                battlePhase.battlePhase(DISPLAYSURF, player, npc)
+            elif mainPhase.mainPhase(DISPLAYSURF, player, npc) == "EndPhase":
+                # End Phase
+                print("ahora en End Phase")
+                drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, "EndPhase")
         
             # for a, i in enumerate(players[i].hand):
             #     # detecta si el mouse está sobre alguna carta de la mano
@@ -172,7 +177,7 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
             #     #     print(f"Rectángulo: {i.rectangulo.left}, {i.rectangulo.top}")
             #     #     littleSleep()
 
-            # drawing.drawingAll(DISPLAYSURF, player, npc, None)
+            # drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, None)
 
 
 # # Duel tools ----------------
@@ -212,7 +217,7 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
 #         CHARACTERHAND += (1150-500)/len(character.hand)
 
 
-# def drawingAll(nameDuelFont, DISPLAYSURF, player, npc):
+# def drawingAll(myMouse,nameDuelFont, DISPLAYSURF, player, npc):
 #     DISPLAYSURF.fill((255, 255, 255))
 #     DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
 #     # this should drawing all ;v
@@ -284,7 +289,7 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
 #         for i in players:
 #             while len(players[i].hand) < 4:
 #                 players[i].drawACard()
-#                 drawingAll(nameDuelFont, DISPLAYSURF, player, npc)
+#                 drawingAll(myMouse,nameDuelFont, DISPLAYSURF, player, npc)
 #         for i in players:
 #             turnStarts()
 #             for event in pygame.event.get():
@@ -302,7 +307,7 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
 #             print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
 #             players[i].drawPhase()
 #             print(players[i].hand) #solo para comprobar que shuffle deck funciona :)
-#             drawingAll(nameDuelFont, DISPLAYSURF, player, npc)
+#             drawingAll(myMouse,nameDuelFont, DISPLAYSURF, player, npc)
 #             # MainPhase:
 #             print("ahora en Main Phase")
 #             # BattlePhase
@@ -323,7 +328,7 @@ def duelStart(DISPLAYSURF, player, npc, myMouse):
 #                 #     print(f"Rectángulo: {i.rectangulo.left}, {i.rectangulo.top}")
 #                 #     littleSleep()
 
-#             drawingAll(nameDuelFont, DISPLAYSURF, player, npc)      
+#             drawingAll(myMouse,nameDuelFont, DISPLAYSURF, player, npc)      
 
 
 # if __name__ == '__main__':

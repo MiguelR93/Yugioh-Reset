@@ -28,7 +28,7 @@ def printHand(DISPLAYSURF, character, characterHandY):
         CHARACTERHAND += (1150-500)/len(character.hand)
 
 
-def drawingAll(DISPLAYSURF, player, npc, currentlyPhase):
+def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase):
     DISPLAYSURF.fill((255, 255, 255))
     # DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
     playerFace = Rect(0,0,150,150)
@@ -140,4 +140,4 @@ def drawingAll(DISPLAYSURF, player, npc, currentlyPhase):
 
     # print("ya debería actualizarse ._.")
     pygame.display.update()
-    clock.tick(3)
+    clock.tick(60)
