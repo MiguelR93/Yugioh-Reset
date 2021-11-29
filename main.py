@@ -39,14 +39,16 @@ def mainLoop():
                 pygame.quit()
                 sys.exit()
         
-        # myMouse = pygame.mouse.get_pos()
-        # print(myMouse)
+        myMouse = pygame.mouse.get_pos()
+        print(myMouse)
 
-        gameStart.gameStart(DISPLAYSURF)
+        # gameStart.gameStart(DISPLAYSURF)
 
-        inTheStreet.streetLoop(DISPLAYSURF, protagonista, npc1)
+        
+        # inTheStreet.streetLoop(DISPLAYSURF, protagonista, npc1) # falta ver
 
-        # duel.duelStart(DISPLAYSURF, protagonista, npc1, myMouse)
+        # duel.oldDuelStart(DISPLAYSURF, protagonista, npc1, myMouse)
+        duel.duelStart(DISPLAYSURF, protagonista, npc1, myMouse)
 
         pygame.display.update()
         clock.tick(60)

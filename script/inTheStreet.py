@@ -10,8 +10,10 @@ clock = pygame.time.Clock()
 
 
 def streetLoop(DISPLAYSURF, protagonista, npc):
+    print("En la función de la calle")
     currentPlyayerAvatar = protagonista.avatarFront
     while True:
+        print("En el bucle de la calle")
         DISPLAYSURF.blit(background.front00, (background.posBackground))
         # detecting input ------
         for event in pygame.event.get():
@@ -67,6 +69,18 @@ def streetLoop(DISPLAYSURF, protagonista, npc):
                             protagonista.playerY += 0
                         else: 
                             protagonista.playerY += protagonista.speedY
+                
+            # duel
+            if event.type == pygame.KEYDOWN: # agregar que player esté mirando al npc
+                if (event.key == pygame.K_RETURN) and (protagonista.playerX - 75 == npc.playerX):
+                    print("Duelo!")
+                    duel.duelStart(DISPLAYSURF, protagonista, npc, (0,0))
+                elif (event.key == pygame.K_RETURN) and (protagonista.playerX + 75 == npc.playerX):
+                    print("Duelo!")
+                elif (event.key == pygame.K_RETURN) and (protagonista.playerY - 80 == npc.playerY):
+                    print("Duelo!")
+                elif (event.key == pygame.K_RETURN) and (protagonista.playerY + 80 == npc.playerY):
+                    print("Duelo!")
         
         protagonistaAvatar = DISPLAYSURF.blit(currentPlyayerAvatar, (protagonista.playerX, protagonista.playerY))
         # protagonistaAvatar() # parece funcionar, pero cuál es el límite?
