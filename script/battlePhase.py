@@ -23,3 +23,5 @@ def battlePhase(DISPLAYSURF, player, npc):
             if pygame.mouse.get_pressed()[0] == True:
                 # return "EndPhase"
                 break
+        
+        drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, "BattlePhase")

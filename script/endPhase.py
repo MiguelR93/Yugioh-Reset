@@ -18,4 +18,5 @@ def endPhase(DISPLAYSURF, player, npc):
         myMouse = pygame.mouse.get_pos()
         print(myMouse)
 
-        break
+        drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, "EndPhase")
+        break # al final de todo
