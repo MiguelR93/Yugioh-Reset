@@ -69,6 +69,19 @@ class Character():
             # i.makeARect() # momentaneamente silenciado hasta hallarle necesidad
             CHARACTERHAND += (1150-500)/len(self.hand)
 
+
+    def monstersInField(self):
+        monsters = [
+            self.rigthMz, 
+            self.centerMz, 
+            self.leftMz
+        ]
+        monstersCounter = 0
+        for i in monsters:
+            if i != None:
+                monstersCounter += 1
+        return monstersCounter
+
     # def printHand(DISPLAYSURF, character, characterHandY): # lo traje para incluir su bloque de código a la función drawACard
     #     CHARACTERHAND = 500
     #     for i in character.hand:
