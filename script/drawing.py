@@ -32,6 +32,8 @@ def printHand(DISPLAYSURF, character, characterHandY, cartaOpciones):
     if cartaOpciones != None:
         # pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (cartaOpciones.cardX, cartaOpciones.cardY - 25, cartaOpciones.cardWidth, cartaOpciones.cardHeight), 0)
         pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (cartaOpciones.cardX, cartaOpciones.cardY - 25, cartaOpciones.cardWidth, 25), 0)
+        if isinstance(cartaOpciones, card.Monster) and (cartaOpciones.placeOnGame == "hand"):
+            print(character.monstersInField())
 
 
 
