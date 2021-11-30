@@ -13,7 +13,7 @@ turnCounterFont = pygame.font.Font(None,40)
 phaseFont = pygame.font.Font(None,40)
 nameDuelFont = pygame.font.Font(None,40) # genérico
 
-def printHand(DISPLAYSURF, character, characterHandY):
+def printHand(DISPLAYSURF, character, characterHandY, cartaOpciones):
     # CHARACTERHAND = 500
     # for i in character.hand:
     #     pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (CHARACTERHAND, characterHandY, 82, 118), 0)
@@ -28,10 +28,14 @@ def printHand(DISPLAYSURF, character, characterHandY):
         # pygame.draw.rect(DISPLAYSURF, (0, 255, 0), i.rectangulo, 0) # es lo mismo que su inmediato inferior
         pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (i.cardX, i.cardY, i.cardWidth, i.cardHeight), 0)
         DISPLAYSURF.blit(i.illustration, (i.cardX, i.cardY))
+    
+    if cartaOpciones != None:
+        # pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (cartaOpciones.cardX, cartaOpciones.cardY - 25, cartaOpciones.cardWidth, cartaOpciones.cardHeight), 0)
+        pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (cartaOpciones.cardX, cartaOpciones.cardY - 25, cartaOpciones.cardWidth, 25), 0)
 
 
 
-def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase):
+def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones):
     DISPLAYSURF.fill((255, 255, 255))
     # DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
     playerFace = Rect(0,0,150,150)
@@ -127,7 +131,7 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase):
     # for i in npc.hand:
     #     pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (NPCHAND, 0, 50, 50))
     #     NPCHAND += (1150-500)/len(npc.hand)
-    printHand(DISPLAYSURF, npc, 100)
+    printHand(DISPLAYSURF, npc, 100, cartaOpciones)
 
     pygame.draw.rect(DISPLAYSURF, (255,255,0), gameField, 0)
 
@@ -142,7 +146,7 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase):
     # for i in player.hand:
     #     pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (PLAYERHAND, 700, 50, 50))
     #     PLAYERHAND += (1150-500)/len(player.hand)
-    printHand(DISPLAYSURF, player, 700)
+    printHand(DISPLAYSURF, player, 700, cartaOpciones)
         
 
 

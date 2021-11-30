@@ -9,6 +9,7 @@ pygame.init()
 
 def mainPhase(DISPLAYSURF, player, npc):
     print("Inicio de la Main Phase >>>:)")
+    cartaOpciones = None
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -29,6 +30,18 @@ def mainPhase(DISPLAYSURF, player, npc):
             if pygame.mouse.get_pressed()[0] == True:
                 # break # ir a BP
                 return "EndPhase"
-        drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, "MainPhase")
+        
+        # cartaOpciones = None
+        for i in player.hand: # Detecta sobre qué carta está el mouse
+            # if (myMouse[0] >= i.cardX) and (myMouse[0] <= i.cardX + i.cardWidth) and (myMouse[1]  >= i.cardY) and (myMouse[1] <= i.cardY + i.cardHeight):
+            if (myMouse[0] >= i.cardX) and (myMouse[0] <= i.cardX + i.cardWidth) and (myMouse[1]  >= i.cardY) and (myMouse[1] <= i.cardY + i.cardHeight) and (pygame.mouse.get_pressed()[0] == True) and (cartaOpciones == i):
+                cartaOpciones = None
+            elif (pygame.mouse.get_pressed()[2] == True):
+                cartaOpciones = None
+            elif (myMouse[0] >= i.cardX) and (myMouse[0] <= i.cardX + i.cardWidth) and (myMouse[1]  >= i.cardY) and (myMouse[1] <= i.cardY + i.cardHeight) and (pygame.mouse.get_pressed()[0] == True):
+                # print(i.name)
+                cartaOpciones = i
+
+        drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, "MainPhase", cartaOpciones)
 
         # detectar la posición del mouse sobre una carta

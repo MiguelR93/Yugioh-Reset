@@ -24,4 +24,4 @@ def battlePhase(DISPLAYSURF, player, npc):
                 # return "EndPhase"
                 break
         
-        drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, "BattlePhase")
+        drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, "BattlePhase", None)
