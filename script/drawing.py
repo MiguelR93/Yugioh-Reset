@@ -14,18 +14,21 @@ phaseFont = pygame.font.Font(None,40)
 nameDuelFont = pygame.font.Font(None,40) # genérico
 
 def printHand(DISPLAYSURF, character, characterHandY):
-    CHARACTERHAND = 500
+    # CHARACTERHAND = 500
+    # for i in character.hand:
+    #     pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (CHARACTERHAND, characterHandY, 82, 118), 0)
+    #     DISPLAYSURF.blit(i.illustration, (CHARACTERHAND, characterHandY))
+    #     i.cardX, i.cardY = CHARACTERHAND, characterHandY
+    #     i.makeARect()
+    #     CHARACTERHAND += (1150-500)/len(character.hand)
+
+
+    # CHARACTERHAND = 500
     for i in character.hand:
-        # if isinstance(i, card.MonsterNormal):
-        #     print("sí es monstruo nomral!")
-        #     DISPLAYSURF.blit(i.illustration, (CHARACTERHAND, characterHandY))
-        # else:
-        #     pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (CHARACTERHAND, characterHandY, 50, 50), 2)
-        pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (CHARACTERHAND, characterHandY, 82, 118), 0)
-        DISPLAYSURF.blit(i.illustration, (CHARACTERHAND, characterHandY))
-        i.cardX, i.cardY = CHARACTERHAND, characterHandY
-        i.makeARect()
-        CHARACTERHAND += (1150-500)/len(character.hand)
+        # pygame.draw.rect(DISPLAYSURF, (0, 255, 0), i.rectangulo, 0) # es lo mismo que su inmediato inferior
+        pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (i.cardX, i.cardY, i.cardWidth, i.cardHeight), 0)
+        DISPLAYSURF.blit(i.illustration, (i.cardX, i.cardY))
+
 
 
 def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase):

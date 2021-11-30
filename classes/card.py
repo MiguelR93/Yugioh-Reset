@@ -14,10 +14,12 @@ class Card():
         self.placeOnGame = None # experimento
         self.cardX = None
         self.cardY = None
+        self.cardWidth = 81
+        self.cardHeight = 118
         self.rectangulo = None
     
-    def makeARect(self):
-        self.rectangulo = pygame.Rect(self.cardX, self.cardY, 81, 118)
+    # def makeARect(self): # momentaneamente silenciado hasta hallarlo necesario
+    #     self.rectangulo = pygame.Rect(self.cardX, self.cardY, 81, 118)
 
     
     # def options(self):

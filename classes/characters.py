@@ -33,6 +33,8 @@ class Character():
         self.rigthSTZ = None
         self.centerSTZ = None
         self.leftSTZ = None
+        self.handY = None # new!
+
 
     def drawPhase(self):
         if self.cardsInHand() >= 5:
@@ -54,6 +56,27 @@ class Character():
             self.deck[0].placeOnGame = "hand" # experimento
             self.hand.append(self.deck[0]) # añade la carta del deck a la mano
             self.deck.remove(self.deck[0]) # quita del deck la carta añadida a la mano
+            
+            self.orderCardsInHand() # new!
+
+
+    def orderCardsInHand(self):
+        CHARACTERHAND = 500
+        for i in self.hand:
+            # pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (CHARACTERHAND, 700, 82, 118), 0)
+            # DISPLAYSURF.blit(i.illustration, (CHARACTERHAND, 700))
+            i.cardX, i.cardY = CHARACTERHAND, self.handY
+            # i.makeARect() # momentaneamente silenciado hasta hallarle necesidad
+            CHARACTERHAND += (1150-500)/len(self.hand)
+
+    # def printHand(DISPLAYSURF, character, characterHandY): # lo traje para incluir su bloque de código a la función drawACard
+    #     CHARACTERHAND = 500
+    #     for i in character.hand:
+    #         pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (CHARACTERHAND, characterHandY, 82, 118), 0)
+    #         DISPLAYSURF.blit(i.illustration, (CHARACTERHAND, characterHandY))
+    #         i.cardX, i.cardY = CHARACTERHAND, characterHandY
+    #         i.makeARect()
+    #         CHARACTERHAND += (1150-500)/len(character.hand)
 
     def shuffleDeck(self):
         random.shuffle(self.deck)
@@ -66,8 +89,29 @@ class Npc(Character):
         #  on Street:
         self.firstFrase = firstFrase
         self.duelFrase = duelFrase
+        self.handY = 100
+
+    # def drawACard(self):
+    #     if len(self.deck) == 0:
+    #         print("No hay cartas en el deck")
+    #         self.victory = False
+    #     else:
+    #         self.deck[0].placeOnGame = "hand" # experimento
+    #         self.hand.append(self.deck[0]) # añade la carta del deck a la mano
+    #         self.deck.remove(self.deck[0]) # quita del deck la carta añadida a la mano
+
+
+    # def orderCardsInHand(self):
+    #     CHARACTERHAND = 500
+    #     for i in self.hand:
+    #         # pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (CHARACTERHAND, 700, 82, 118), 0)
+    #         # DISPLAYSURF.blit(i.illustration, (CHARACTERHAND, 700))
+    #         i.cardX, i.cardY = CHARACTERHAND, 700
+    #         i.makeARect()
+    #         CHARACTERHAND += (1150-500)/len(self.hand)
         
 
 class Player(Character):
     def __init__(self, id, name, playerX, playerY, avatarFront, avatarRight, avatarLeft, avatarBack):
         super().__init__(id, name, playerX, playerY, avatarFront, avatarRight, avatarLeft, avatarBack)
+        self.handY = 700
