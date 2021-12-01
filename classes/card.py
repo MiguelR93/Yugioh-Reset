@@ -56,15 +56,23 @@ class Monster(Card):
         self.canChangeItsPosition = None
     
     def options(self):
+        # positionY = self.cardY
         print("Read this card")
         if self.placeOnGame == "hand":
-            # Normal summon/set
+            # Normal summon
             if (self.level <= 4) and (self.owner.monstersInField() < 3):
                 print(f"{self.name, self.level} can be normal summoned")
             elif ((self.level == 5) or (self.level == 6)) and (self.owner.monstersInField() > 0):
                 print(f"{self.name, self.level} can be normal summoned")
             elif (self.level >= 7) and (self.owner.monstersInField() > 1):
                 print(f"{self.name, self.level} can be normal summoned")
+            # set
+            if (self.level <= 4) and (self.owner.monstersInField() < 3):
+                print(f"{self.name, self.level} can be set")
+            elif ((self.level == 5) or (self.level == 6)) and (self.owner.monstersInField() > 0):
+                print(f"{self.name, self.level} can be set")
+            elif (self.level >= 7) and (self.owner.monstersInField() > 1):
+                print(f"{self.name, self.level} can be set")
 
 
     def normalSummon(self):
