@@ -5,7 +5,7 @@ pygame.init()
 
 class Card():
 
-    def __init__(self, id, name, cardType, text, illustration):
+    def __init__(self, id, name, cardType, text, illustration, owner):
         self.id = id
         self.name = name
         self.cardType = cardType
@@ -17,6 +17,7 @@ class Card():
         self.cardWidth = 81
         self.cardHeight = 118
         self.rectangulo = None
+        self.owner = owner
     
     # def makeARect(self): # momentaneamente silenciado hasta hallarlo necesario
     #     self.rectangulo = pygame.Rect(self.cardX, self.cardY, 81, 118)
@@ -33,8 +34,8 @@ class CardEffect():
 
 class Monster(Card):
     
-    def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, illustration):
-        super().__init__(id, name, cardType, text, illustration)
+    def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, illustration, owner):
+        super().__init__(id, name, cardType, text, illustration, owner)
         self.attribute = attribute
         self.level = int(level)
         self.typeMonster = typeMonster
@@ -63,14 +64,14 @@ class Monster(Card):
 
 class MonsterNormal(Monster):
 
-    def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, illustration):
+    def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, illustration, owner):
         super().__init__(id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text,
-        illustration)
+        illustration, owner)
 
 
 class MonsterEffect(Monster):
-    def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, effect, illustration):
-        super().__init__(id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, illustration)
+    def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, effect, illustration, owner):
+        super().__init__(id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, illustration, owner)
         self.effect = effect
 
 
@@ -78,8 +79,8 @@ class SpellTrap(Card):
     icon = str
     effect = CardEffect("")
 
-    def __init__(self, id, name, cardType, icon, effect, text, illustration):
-        super().__init__(id, name, cardType, text, illustration)
+    def __init__(self, id, name, cardType, icon, effect, text, illustration, owner):
+        super().__init__(id, name, cardType, text, illustration, owner)
         self.icon = icon
         self.effect = effect
 

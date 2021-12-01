@@ -13,7 +13,7 @@ turnCounterFont = pygame.font.Font(None,40)
 phaseFont = pygame.font.Font(None,40)
 nameDuelFont = pygame.font.Font(None,40) # genérico
 
-def printHand(DISPLAYSURF, character, characterHandY, cartaOpciones):
+def printHand(DISPLAYSURF, character, cartaOpciones):
     # CHARACTERHAND = 500
     # for i in character.hand:
     #     pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (CHARACTERHAND, characterHandY, 82, 118), 0)
@@ -32,8 +32,8 @@ def printHand(DISPLAYSURF, character, characterHandY, cartaOpciones):
     if cartaOpciones != None:
         # pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (cartaOpciones.cardX, cartaOpciones.cardY - 25, cartaOpciones.cardWidth, cartaOpciones.cardHeight), 0)
         pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (cartaOpciones.cardX, cartaOpciones.cardY - 25, cartaOpciones.cardWidth, 25), 0)
-        if isinstance(cartaOpciones, card.Monster) and (cartaOpciones.placeOnGame == "hand"):
-            print(character.monstersInField())
+        if isinstance(cartaOpciones, card.Monster) and (cartaOpciones.placeOnGame == "hand") and (character == cartaOpciones.owner):
+            print(character.monstersInField(), cartaOpciones.owner.name)
 
 
 
@@ -133,7 +133,7 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
     # for i in npc.hand:
     #     pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (NPCHAND, 0, 50, 50))
     #     NPCHAND += (1150-500)/len(npc.hand)
-    printHand(DISPLAYSURF, npc, 100, cartaOpciones)
+    printHand(DISPLAYSURF, npc, cartaOpciones)
 
     pygame.draw.rect(DISPLAYSURF, (255,255,0), gameField, 0)
 
@@ -148,7 +148,7 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
     # for i in player.hand:
     #     pygame.draw.rect(DISPLAYSURF, (0, 255, 255), (PLAYERHAND, 700, 50, 50))
     #     PLAYERHAND += (1150-500)/len(player.hand)
-    printHand(DISPLAYSURF, player, 700, cartaOpciones)
+    printHand(DISPLAYSURF, player, cartaOpciones)
         
 
 

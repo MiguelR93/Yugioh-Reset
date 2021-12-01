@@ -21,13 +21,13 @@ clock = pygame.time.Clock()
 protagonista = characters.Player(1, "Drakdio", 600, 320, pygame.image.load("./images/characters/kaibaF01.png"), pygame.image.load("./images/characters/kaibaR01.png"), pygame.image.load("./images/characters/kaibaL01.png"), pygame.image.load("./images/characters/kaibaB01.png"))
 currentPlyayerAvatar = protagonista.avatarFront
 # def protagonistaAvatar(): DISPLAYSURF.blit(currentPlyayerAvatar, (playerX, playerY)) # funcionaría?
-protagonista.deck = openDeck.openDeck()
+protagonista.deck = openDeck.openDeck(protagonista)
 
 # NPC:
 # npc1
 npc1X, npc1Y = 75, 320
 npc1 = characters.Npc(1, "Kaiba", 75, 320, pygame.image.load("./images/characters/kaibaEvilF01.png"), pygame.image.load("./images/characters/kaibaEvilF01.png"), pygame.image.load("./images/characters/kaibaEvilF01.png"), pygame.image.load("./images/characters/kaibaEvilF01.png"), "Hola", "Duelo!")
-npc1.deck = openDeck.openDeck()
+npc1.deck = openDeck.openDeck(npc1)
 
 # main loop:
 def mainLoop():

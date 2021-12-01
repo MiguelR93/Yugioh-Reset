@@ -5,8 +5,8 @@ class DragonicPressure(card.SpellTrap):
     # NOTA: LA CARTA SE ENVÍA AL GY INCLUSO SI EL EFF NO SE RESUELVE Y ADEMÁS CUENTA COMO ESTUVIERA EN LA MANO
     # NOTA: LA CARTA DEBE PASAR DE LA MANO AL CAMPO Y LUEGO ACTIVAR SU EFF, DESPUÉS SER ENVIADA AL GY
     # NOTA: SUMMONLOOP FUNCIONA CON CARTAS DE LA MANO, CAMBIAR ESO
-    def __init__(self, id, name, cardType, icon, effect, text, illustration):
-        super().__init__(id, name, cardType, icon, effect, text, illustration)
+    def __init__(self, id, name, cardType, icon, effect, text, illustration, owner):
+        super().__init__(id, name, cardType, icon, effect, text, illustration, owner)
 
     # def cardEffect(self, playerTurn):
     #     # TEXT: 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'
@@ -36,5 +36,5 @@ class DragonicPressure(card.SpellTrap):
 #             super().__init__(id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, effect, illustration)
 
 class PhoenixDragon(card.MonsterEffect):
-        def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, effect, illustration):
-            super().__init__(id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, effect, illustration)
+        def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, effect, illustration, owner):
+            super().__init__(id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, effect, illustration, owner)
