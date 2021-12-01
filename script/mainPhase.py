@@ -42,6 +42,13 @@ def mainPhase(DISPLAYSURF, player, npc):
                 # print(i.name)
                 cartaOpciones = i
 
+        if cartaOpciones != None:
+            cartaOpciones.options()
+
+        # if cartaOpciones != None: # debe desplegarse una serie de opciones y cada opción debe pasar por el bucle: lo de abajo debería ser un bucle :V
+        #     if (myMouse[0] >= cartaOpciones.cardX) and (myMouse[0] <= cartaOpciones.cardX + cartaOpciones.cardWidth) and (myMouse[1]  >= cartaOpciones.cardY) and (myMouse[1] <= cartaOpciones.cardY + cartaOpciones.cardHeight) and (pygame.mouse.get_pressed()[0] == True) and (cartaOpciones == i):
+        #         pass
+
         drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, "MainPhase", cartaOpciones)
 
         # detectar la posición del mouse sobre una carta

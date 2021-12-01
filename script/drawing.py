@@ -24,13 +24,11 @@ def printHand(DISPLAYSURF, character, cartaOpciones):
 
 
     # CHARACTERHAND = 500
-    for i in character.hand:
-        # pygame.draw.rect(DISPLAYSURF, (0, 255, 0), i.rectangulo, 0) # es lo mismo que su inmediato inferior
+    for i in character.hand: # dibuja cada carta
         pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (i.cardX, i.cardY, i.cardWidth, i.cardHeight), 0)
         DISPLAYSURF.blit(i.illustration, (i.cardX, i.cardY))
     
     if cartaOpciones != None:
-        # pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (cartaOpciones.cardX, cartaOpciones.cardY - 25, cartaOpciones.cardWidth, cartaOpciones.cardHeight), 0)
         pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (cartaOpciones.cardX, cartaOpciones.cardY - 25, cartaOpciones.cardWidth, 25), 0)
         if isinstance(cartaOpciones, card.Monster) and (cartaOpciones.placeOnGame == "hand") and (character == cartaOpciones.owner):
             print(character.monstersInField(), cartaOpciones.owner.name)

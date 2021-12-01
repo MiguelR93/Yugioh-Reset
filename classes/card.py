@@ -18,6 +18,8 @@ class Card():
         self.cardHeight = 118
         self.rectangulo = None
         self.owner = owner
+        self.cardOptionRectwidth = 81 # experimento
+        self.cardOptionRectHeight = 25 # experimento
     
     # def makeARect(self): # momentaneamente silenciado hasta hallarlo necesario
     #     self.rectangulo = pygame.Rect(self.cardX, self.cardY, 81, 118)
@@ -54,8 +56,15 @@ class Monster(Card):
         self.canChangeItsPosition = None
     
     def options(self):
+        print("Read this card")
         if self.placeOnGame == "hand":
-            print(f"{self.name} can be normal summoned")
+            # Normal summon/set
+            if (self.level <= 4) and (self.owner.monstersInField() < 3):
+                print(f"{self.name, self.level} can be normal summoned")
+            elif ((self.level == 5) or (self.level == 6)) and (self.owner.monstersInField() > 0):
+                print(f"{self.name, self.level} can be normal summoned")
+            elif (self.level >= 7) and (self.owner.monstersInField() > 1):
+                print(f"{self.name, self.level} can be normal summoned")
 
 
     def normalSummon(self):
@@ -88,3 +97,6 @@ class SpellTrap(Card):
         self.position = None # [active, set]
         self.placedThisTurn = None
         self.canBeActivatedThisTurn = None
+
+    def options(self):
+        pass
