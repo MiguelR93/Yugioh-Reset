@@ -18,8 +18,11 @@ class Card():
         self.cardHeight = 118
         self.rectangulo = None
         self.owner = owner
-        self.cardOptionRectwidth = 81 # experimento
-        self.cardOptionRectHeight = 25 # experimento
+        # show options
+        self.cardOptionsHeight = 25 # experimento
+        self.optionRead = [None, (100, 125, 0)]
+        self.optionSet = [None, (255, 125, 100)]
+        self.optionActiveEff = [None, (255, 100, 0)]
     
     # def makeARect(self): # momentaneamente silenciado hasta hallarlo necesario
     #     self.rectangulo = pygame.Rect(self.cardX, self.cardY, 81, 118)
@@ -54,25 +57,56 @@ class Monster(Card):
         self.summonedThisTurn = None
         self.canAttackThisTurn = 1
         self.canChangeItsPosition = None
+
+        # show options
+        self.optionSummon = [None, (255, 125, 255)]
+        self.optionAttack = [None, (255, 125, 125)]
+        self.optionFlipSummon = [None, (0, 125, 0)]
+        self.optionChangePosition = [None, (255, 0, 0)]
     
     def options(self):
-        # positionY = self.cardY
+        showOptions = []
+        positionY = self.cardY
         print("Read this card")
+        self.optionRead[0] = positionY - 25
+        positionY -= 25
+        showOptions.append(self.optionRead)
+        
+        
         if self.placeOnGame == "hand":
             # Normal summon
             if (self.level <= 4) and (self.owner.monstersInField() < 3):
                 print(f"{self.name, self.level} can be normal summoned")
+                self.optionSummon[0] = positionY - 25
+                positionY -= 25
+                showOptions.append(self.optionSummon)
             elif ((self.level == 5) or (self.level == 6)) and (self.owner.monstersInField() > 0):
                 print(f"{self.name, self.level} can be normal summoned")
+                self.optionSummon[0] = positionY - 25
+                positionY -= 25
+                showOptions.append(self.optionSummon)
             elif (self.level >= 7) and (self.owner.monstersInField() > 1):
                 print(f"{self.name, self.level} can be normal summoned")
+                self.optionSummon[0] = positionY - 25
+                positionY -= 25
+                showOptions.append(self.optionSummon)
             # set
             if (self.level <= 4) and (self.owner.monstersInField() < 3):
                 print(f"{self.name, self.level} can be set")
+                self.optionSet[0] = positionY - 25
+                positionY -= 25
+                showOptions.append(self.optionSet)
             elif ((self.level == 5) or (self.level == 6)) and (self.owner.monstersInField() > 0):
                 print(f"{self.name, self.level} can be set")
+                self.optionSet[0] = positionY - 25
+                positionY -= 25
+                showOptions.append(self.optionSet)
             elif (self.level >= 7) and (self.owner.monstersInField() > 1):
                 print(f"{self.name, self.level} can be set")
+                self.optionSet[0] = positionY - 25
+                positionY -= 25
+                showOptions.append(self.optionSet)
+        return showOptions
 
 
     def normalSummon(self):

@@ -29,9 +29,12 @@ def printHand(DISPLAYSURF, character, cartaOpciones):
         DISPLAYSURF.blit(i.illustration, (i.cardX, i.cardY))
     
     if cartaOpciones != None:
-        pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (cartaOpciones.cardX, cartaOpciones.cardY - 25, cartaOpciones.cardWidth, 25), 0)
+        # pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (cartaOpciones.cardX, cartaOpciones.cardY - 25, cartaOpciones.cardWidth, 25), 0) # oculto temporalmente
         if isinstance(cartaOpciones, card.Monster) and (cartaOpciones.placeOnGame == "hand") and (character == cartaOpciones.owner):
             print(character.monstersInField(), cartaOpciones.owner.name)
+            for i in cartaOpciones.options():
+                print(f"Esto está en options: {i}")
+                pygame.draw.rect(DISPLAYSURF, i[1], (cartaOpciones.cardX, i[0], cartaOpciones.cardWidth, 25), 0)
 
 
 
