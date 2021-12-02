@@ -62,7 +62,8 @@ def mainPhase(DISPLAYSURF, player, npc):
                             duel.cartaOpciones.normalSummon(DISPLAYSURF, player, npc, "MainPhase", duel.cartaOpciones)
                             print(player.hand)
                             print(f"\n\nAhora duel.cartaOpciones es: {duel.cartaOpciones}")
-                except AttributeError:
+                except AttributeError as e:
+                    print(e)
                     pass
 
         # if duel.cartaOpciones != None: # debe desplegarse una serie de opciones y cada opción debe pasar por el bucle: lo de abajo debería ser un bucle :V

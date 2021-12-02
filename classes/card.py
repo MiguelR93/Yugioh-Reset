@@ -145,13 +145,12 @@ class Monster(Card):
                             self.owner.hand.remove(self)
                             i[0] = self
                             self.cardX, self.cardY = i[1].left, i[1].top
-                            # print(f"\n\nposiciones de i: {i[1].left, i[1].top}")
-                            # self.cardX = i[1].left
-                            # self.cardY = i[1].top
                             duel.cartaOpciones = None
                             self.owner.orderCardsInHand()
+                            self.summonedThisTurn = True
+                            self.canChangeItsPosition = False
                             status = 'finished'
-                            break
+                            # break # volverá?
                             # return duel.cartaOpciones
                             # monsterZoneChosed = i
                 # if monsterZoneChosed != None:
