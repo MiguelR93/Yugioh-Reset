@@ -157,6 +157,8 @@ class Monster(Card):
                 ## 2.2 Si zona está disponible ir a 3
                 # 3. invocar al monstruo en la zona elegida
                 # 4. FIN
+            if (self.level >= 5) and (self.level <= 6) and (self.owner.monstersInField() > 0):
+                drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', '1Tributo'])
 
 
 class MonsterNormal(Monster):

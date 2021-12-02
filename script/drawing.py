@@ -165,12 +165,19 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
     printHand(DISPLAYSURF, player, cartaOpciones)
         
 
-    if (functionStatus!= None) and (functionStatus[0] == 'normalSummon') and (functionStatus[1] == 'zonasDisponibles'):
-        print(f"Zonas de monstruo{cartaOpciones.owner.monstersZones()}")
-        for i in cartaOpciones.owner.monstersZones():
-            print(i)
-            if i[0] == None:
-                pygame.draw.rect(DISPLAYSURF, (0,0,0), i[1], 5)
+    if (functionStatus!= None):
+        if (functionStatus[0] == 'normalSummon'):
+            if (functionStatus[1] == 'zonasDisponibles'):
+                print(f"Zonas de monstruo{cartaOpciones.owner.monstersZones()}")
+                for i in cartaOpciones.owner.monstersZones():
+                    print(i)
+                    if i[0] == None:
+                        pygame.draw.rect(DISPLAYSURF, (0,0,0), i[1], 5)
+            elif (functionStatus[1] == '1Tributo'):
+                for i in cartaOpciones.owner.monstersZones():
+                    print('1 Tributo!')
+                    if i[0] != None:
+                        pygame.draw.rect(DISPLAYSURF, (255,0,0), i[1], 5)
 
     # print("ya debería actualizarse ._.")
     pygame.display.update()
