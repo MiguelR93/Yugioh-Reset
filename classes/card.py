@@ -154,7 +154,7 @@ class SpellTrap(Card):
 
         if self.placeOnGame == "hand":
             # Activar
-            if (self.cardType == 'SPELL') and (self.owner.cardsInSTZones() < 3): # falta evaluar que haya espacio
+            if (self.cardType == 'SPELL')and (self.owner.cardsInSTZones() < 3) and (self.icon == 'normal') : # falta evaluar que haya espacio
                 print('Puedes activar')
                 # print(f"{self.name, self.level} can be normal summoned")
                 self.optionActiveEff[0] = positionY - 25
@@ -163,8 +163,9 @@ class SpellTrap(Card):
             # elif self.cardType == 'TRAP':
             #     # print('NO Puedes activar')
             #     pass
+            
             # Set
-            if (self.cardType == 'SPELL') and (self.owner.cardsInSTZones() < 3):# falta evaluar que haya espacio
+            # if (self.cardType == 'SPELL') and (self.owner.cardsInSTZones() < 3) and (self.icon == 'normal') :# falta evaluar que haya espacio
                 # print(f"{self.name, self.level} can be set")
                 self.optionSet[0] = positionY - 25
                 positionY -= 25
