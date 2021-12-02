@@ -20,9 +20,9 @@ class Card():
         self.owner = owner
         # show options
         self.cardOptionsHeight = 25 # experimento
-        self.optionRead = [None, (100, 125, 0)]
-        self.optionSet = [None, (255, 125, 100)]
-        self.optionActiveEff = [None, (255, 100, 0)]
+        self.optionRead = [None, (100, 125, 0), 'Leer']
+        self.optionSet = [None, (255, 125, 100), 'Set']
+        self.optionActiveEff = [None, (255, 100, 0), 'Activar']
     
     # def makeARect(self): # momentaneamente silenciado hasta hallarlo necesario
     #     self.rectangulo = pygame.Rect(self.cardX, self.cardY, 81, 118)
@@ -59,10 +59,10 @@ class Monster(Card):
         self.canChangeItsPosition = None
 
         # show options
-        self.optionSummon = [None, (255, 125, 255)]
-        self.optionAttack = [None, (255, 125, 125)]
-        self.optionFlipSummon = [None, (0, 125, 0)]
-        self.optionChangePosition = [None, (255, 0, 0)]
+        self.optionSummon = [None, (255, 125, 255), 'Invocar']
+        self.optionAttack = [None, (255, 125, 125), 'Atacar']
+        self.optionFlipSummon = [None, (0, 125, 0), 'Flip Summon']
+        self.optionChangePosition = [None, (255, 0, 0), 'Cambiar pos.']
     
     def options(self):
         showOptions = []

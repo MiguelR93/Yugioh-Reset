@@ -42,7 +42,7 @@ def mainPhase(DISPLAYSURF, player, npc):
                 # print(i.name)
                 cartaOpciones = i
 
-        if cartaOpciones != None:
+        if cartaOpciones != None: # esta función permite utilizar el comportamiento 'options' del objeto Card
             cartaOpciones.options()
 
         # if cartaOpciones != None: # debe desplegarse una serie de opciones y cada opción debe pasar por el bucle: lo de abajo debería ser un bucle :V

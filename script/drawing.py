@@ -11,6 +11,7 @@ clock = pygame.time.Clock()
 # Fonts:
 turnCounterFont = pygame.font.Font(None,40)
 phaseFont = pygame.font.Font(None,40)
+cardOptionFont = pygame.font.Font(None,18)
 nameDuelFont = pygame.font.Font(None,40) # genérico
 
 def printHand(DISPLAYSURF, character, cartaOpciones):
@@ -35,6 +36,9 @@ def printHand(DISPLAYSURF, character, cartaOpciones):
             for i in cartaOpciones.options():
                 print(f"Esto está en options: {i}")
                 pygame.draw.rect(DISPLAYSURF, i[1], (cartaOpciones.cardX, i[0], cartaOpciones.cardWidth, 25), 0)
+                # optionsCardText
+                optionCardText = cardOptionFont.render(f"{i[2]}", 0, (0, 0, 0))
+                DISPLAYSURF.blit(optionCardText, (cartaOpciones.cardX, i[0]))
 
 
 
@@ -88,7 +92,7 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
     battlePhaseRect = [Rect(975,425,175,75), "BattlePhase"]
     endPhaseRect = [Rect(975,525,175,75), "EndPhase"]
 
-    tcText = turnCounterFont.render(f"Turno:", 0, (0, 0, 0), (255, 255, 255))
+    # tcText = turnCounterFont.render(f"Turno:", 0, (0, 0, 0), (255, 255, 255))
 
     phases = (drawPhaseRect, mainPhaseRect, battlePhaseRect, endPhaseRect,)
 
