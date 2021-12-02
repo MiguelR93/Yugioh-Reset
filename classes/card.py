@@ -151,18 +151,6 @@ class Monster(Card):
                             self.canChangeItsPosition = False
                             status = 'finished'
                             # break # volverá?
-                            # return duel.cartaOpciones
-                            # monsterZoneChosed = i
-                # if monsterZoneChosed != None:
-                #     # print(f"Zona elegida: {monsterZoneChosed}")
-                #     i[0] = self
-                #     self.owner.hand.remove(self)
-                #     print(f"\n\nEstos son: {i.name, monsterZoneChosed[0]} FIN") # por ahora
-                #     self.cardX, self.cardY = i[1].left, i[1].top
-                #     duel.cartaOpciones = None
-                #     self.owner.orderCardsInHand()
-                #     break
-                    # return duel.cartaOpciones
                 if status == 'finished':
                     break
                 ## 2.1 Si zona NO está disponible, volver al paso 2
