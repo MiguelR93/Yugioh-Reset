@@ -54,6 +54,10 @@ def mainPhase(DISPLAYSURF, player, npc):
                 # print(f"{i}: es la opción :V")
                 if (myMouse[0] >= cartaOpciones.cardX) and (myMouse[0] <= cartaOpciones.cardX + cartaOpciones.cardWidth) and (myMouse[1]  >= i[0]) and (myMouse[1] <= i[0] + 25) and (pygame.mouse.get_pressed()[0] == True):
                     print("No me presiones >:V", i[2])
+                    # Aplicando las opciones
+                    if i[2] == 'Normal S.':
+                        print("En efecto, normal summon")
+                        cartaOpciones.normalSummon(myMouse, DISPLAYSURF, player, npc, "MainPhase", cartaOpciones)
 
         # if cartaOpciones != None: # debe desplegarse una serie de opciones y cada opción debe pasar por el bucle: lo de abajo debería ser un bucle :V
         #     if (myMouse[0] >= cartaOpciones.cardX) and (myMouse[0] <= cartaOpciones.cardX + cartaOpciones.cardWidth) and (myMouse[1]  >= cartaOpciones.cardY) and (myMouse[1] <= cartaOpciones.cardY + cartaOpciones.cardHeight) and (pygame.mouse.get_pressed()[0] == True) and (cartaOpciones == i):

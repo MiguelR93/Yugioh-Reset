@@ -1,5 +1,6 @@
 import pygame, sys, time
 from pygame.locals import *
+from script import drawing
 
 pygame.init()
 
@@ -60,7 +61,7 @@ class Monster(Card):
         self.canChangeItsPosition = None
 
         # show options ----------
-        self.optionSummon = [None, (255, 125, 255), 'Invocar']
+        self.optionSummon = [None, (255, 125, 255), 'Normal S.']
         self.optionAttack = [None, (255, 125, 125), 'Atacar']
         self.optionFlipSummon = [None, (0, 125, 0), 'Flip Summon']
         self.optionChangePosition = [None, (255, 0, 0), 'Cambiar pos.']
@@ -111,8 +112,17 @@ class Monster(Card):
         return showOptions
 
 
-    def normalSummon(self):
+    # def normalSummon(self):
+    def normalSummon(self, mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones):
         print("Normal Summon!")
+        if (self.level <= 4) and (self.owner.monstersInField() < 3):
+            # 1. colorear zonas disponibles
+            drawing.drawingAll2(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'])
+            # 2. elegir zona disponible
+            ## 2.1 Si zona NO está disponible, volver al paso 2
+            ## 2.2 Si zona está disponible ir a 3
+            # 3. invocar al monstruo en la zona elegida
+            # 4. FIN
 
 
 class MonsterNormal(Monster):

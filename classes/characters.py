@@ -69,6 +69,13 @@ class Character():
             # i.makeARect() # momentaneamente silenciado hasta hallarle necesidad
             CHARACTERHAND += (1150-500)/len(self.hand)
 
+    def monstersZones(self):
+        monsters = [
+            self.rigthMz, 
+            self.centerMz, 
+            self.leftMz
+        ]
+        return monsters
 
     def monstersInField(self):
         monsters = [
@@ -116,6 +123,15 @@ class Npc(Character):
         self.duelFrase = duelFrase
         self.handY = 100
 
+        # gameZone:
+        self.fieldSCZRect = Rect(800, 325, 125, 125)
+        self.leftMzRect = Rect(675, 325, 125, 125)
+        self.centerMzRect = Rect(550, 325, 125, 125)
+        self.rigthMzRect = Rect(425, 325, 125, 125)
+        self.leftSTZRect = Rect(675, 200, 125, 125)
+        self.centerSTZRect = Rect(550, 200, 125, 125)
+        self.rigthSTZRect = Rect(425, 200, 125, 125)
+
     # def drawACard(self):
     #     if len(self.deck) == 0:
     #         print("No hay cartas en el deck")
@@ -140,3 +156,12 @@ class Player(Character):
     def __init__(self, id, name, playerX, playerY, avatarFront, avatarRight, avatarLeft, avatarBack):
         super().__init__(id, name, playerX, playerY, avatarFront, avatarRight, avatarLeft, avatarBack)
         self.handY = 700
+
+        # gameZone:
+        self.fieldSCZRect = Rect(300, 450, 125, 125)
+        self.leftMzRect = Rect(425, 450, 125, 125)
+        self.centerMzRect = Rect(550, 450, 125, 125)
+        self.rigthMzRect = Rect(675, 450, 125, 125)
+        self.leftSTZRect = Rect(425, 575, 125, 125)
+        self.centerSTZRect = Rect(550, 575, 125, 125)
+        self.rigthSTZRect = Rect(675, 575, 125, 125)
