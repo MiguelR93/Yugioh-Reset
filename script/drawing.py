@@ -31,10 +31,10 @@ def printHand(DISPLAYSURF, character, cartaOpciones):
     
     if cartaOpciones != None:
         # pygame.draw.rect(DISPLAYSURF, (0, 255, 0), (cartaOpciones.cardX, cartaOpciones.cardY - 25, cartaOpciones.cardWidth, 25), 0) # oculto temporalmente
-        if isinstance(cartaOpciones, card.Monster) and (cartaOpciones.placeOnGame == "hand") and (character == cartaOpciones.owner):
+        if (character == cartaOpciones.owner): #and isinstance(cartaOpciones, card.Monster) and (cartaOpciones.placeOnGame == "hand"):
             print(character.monstersInField(), cartaOpciones.owner.name)
             for i in cartaOpciones.options():
-                print(f"Esto está en options: {i}")
+                # print(f"Esto está en options: {i}")
                 pygame.draw.rect(DISPLAYSURF, i[1], (cartaOpciones.cardX, i[0], cartaOpciones.cardWidth, 25), 0)
                 # optionsCardText
                 optionCardText = cardOptionFont.render(f"{i[2]}", 0, (0, 0, 0))

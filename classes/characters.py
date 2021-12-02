@@ -81,6 +81,18 @@ class Character():
             if i != None:
                 monstersCounter += 1
         return monstersCounter
+    
+    def cardsInSTZones(self):
+        sTZones = [
+            self.rigthSTZ,
+            self.centerSTZ,
+            self.leftSTZ
+        ]
+        stCounter = 0
+        for i in sTZones:
+            if i != None:
+                stCounter += 1
+        return stCounter
 
     # def printHand(DISPLAYSURF, character, characterHandY): # lo traje para incluir su bloque de código a la función drawACard
     #     CHARACTERHAND = 500

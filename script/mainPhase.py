@@ -44,6 +44,16 @@ def mainPhase(DISPLAYSURF, player, npc):
 
         if cartaOpciones != None: # esta función permite utilizar el comportamiento 'options' del objeto Card
             cartaOpciones.options()
+            # detectando si estamos haciendo clic en una opción de una carta
+        
+        # if (cartaOpciones != None) and (type(cartaOpciones.options()) == None):
+        # if (cartaOpciones != None) and (len(cartaOpciones.optionsAble) != 0):
+            # for i in cartaOpciones.optionsAble:
+        if cartaOpciones != None:
+            for i in cartaOpciones.options():
+                # print(f"{i}: es la opción :V")
+                if (myMouse[0] >= cartaOpciones.cardX) and (myMouse[0] <= cartaOpciones.cardX + cartaOpciones.cardWidth) and (myMouse[1]  >= i[0]) and (myMouse[1] <= i[0] + 25) and (pygame.mouse.get_pressed()[0] == True):
+                    print("No me presiones >:V", i[2])
 
         # if cartaOpciones != None: # debe desplegarse una serie de opciones y cada opción debe pasar por el bucle: lo de abajo debería ser un bucle :V
         #     if (myMouse[0] >= cartaOpciones.cardX) and (myMouse[0] <= cartaOpciones.cardX + cartaOpciones.cardWidth) and (myMouse[1]  >= cartaOpciones.cardY) and (myMouse[1] <= cartaOpciones.cardY + cartaOpciones.cardHeight) and (pygame.mouse.get_pressed()[0] == True) and (cartaOpciones == i):
