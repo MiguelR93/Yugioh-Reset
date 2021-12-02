@@ -11,6 +11,7 @@ clock = pygame.time.Clock()
 # duel values
 TURNSCOUNTER = 0
 players = {}
+cartaOpciones = None
 
 
 # Duel tools ----------------
@@ -132,7 +133,7 @@ def duelStart(DISPLAYSURF, player, npc):
         for i in players:
             while len(players[i].hand) < 4:
                 players[i].drawACard()
-                drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, None, None)
+                drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, None, None, None)
         for i in players:
             turnStarts()
             for event in pygame.event.get():
@@ -158,12 +159,12 @@ def duelStart(DISPLAYSURF, player, npc):
             if mainPhase.mainPhase(DISPLAYSURF, player, npc) == "BattlePhase":
                 # BattlePhase
                 print("ahora en Battle Phase")
-                drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, "BattlePhase", None)
+                drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, "BattlePhase", None, None)
                 battlePhase.battlePhase(DISPLAYSURF, player, npc)
             elif mainPhase.mainPhase(DISPLAYSURF, player, npc) == "EndPhase":
                 # End Phase
                 print("ahora en End Phase")
-                drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, "EndPhase", None)
+                drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, "EndPhase", None, None)
         
             # for a, i in enumerate(players[i].hand):
             #     # detecta si el mouse está sobre alguna carta de la mano

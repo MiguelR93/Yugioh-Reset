@@ -41,7 +41,7 @@ def printHand(DISPLAYSURF, character, cartaOpciones):
                 DISPLAYSURF.blit(optionCardText, (cartaOpciones.cardX, i[0]))
 
 
-def drawingAll2(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, functionStatus):
+def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, functionStatus):
     print('Drawing All 2')
     DISPLAYSURF.fill((255, 255, 255))
     # DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
@@ -143,6 +143,15 @@ def drawingAll2(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpc
     pygame.draw.rect(DISPLAYSURF, (255,255,0), gameField, 0)
 
 
+    # dibujando campo
+    pygame.draw.rect(DISPLAYSURF, (255,255,0), gameField, 0)
+    for i in player.monstersZones():
+        if i[0] != None:
+            print(f"Esto es el i que dibuja: {i}")
+            pygame.draw.rect(DISPLAYSURF, (0, 5, 0), (i[0].cardX, i[0].cardY, i[0].cardWidth, i[0].cardHeight), 0)
+            DISPLAYSURF.blit(i[0].illustration, (i[0].cardX, i[0].cardY))
+
+
     # player
     DISPLAYSURF.blit(playersName, (150,63))
     DISPLAYSURF.blit(playersLP, (151,13))
@@ -156,7 +165,7 @@ def drawingAll2(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpc
     printHand(DISPLAYSURF, player, cartaOpciones)
         
 
-    if (functionStatus[0] == 'normalSummon') and (functionStatus[1] == 'zonasDisponibles'):
+    if (functionStatus!= None) and (functionStatus[0] == 'normalSummon') and (functionStatus[1] == 'zonasDisponibles'):
         print(f"Zonas de monstruo{cartaOpciones.owner.monstersZones()}")
         for i in cartaOpciones.owner.monstersZones():
             print(i)
@@ -167,7 +176,7 @@ def drawingAll2(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpc
     pygame.display.update()
     clock.tick(10)
 
-def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones):
+def drawingAll3(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones):
     DISPLAYSURF.fill((255, 255, 255))
     # DISPLAYSURF.blit(background.fieldDuel, (background.posBackground))
     playerFace = Rect(0,0,150,150)
@@ -265,7 +274,14 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
     #     NPCHAND += (1150-500)/len(npc.hand)
     printHand(DISPLAYSURF, npc, cartaOpciones)
 
+
+    # dibujando campo
     pygame.draw.rect(DISPLAYSURF, (255,255,0), gameField, 0)
+    for i in player.monstersZones():
+        if i[0] != None:
+            print(f"Esto es el i que dibuja: {i}")
+            pygame.draw.rect(DISPLAYSURF, (0, 5, 0), (i[0].cardX, i[0].cardY, i[0].cardWidth, i[0].cardHeight), 0)
+            DISPLAYSURF.blit(i[0].illustration, (i[0].cardX, i[0].cardY))
 
 
     # player

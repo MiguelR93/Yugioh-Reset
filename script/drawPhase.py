@@ -21,7 +21,7 @@ def drawPhase(DISPLAYSURF, player, npc, character):
         print(character.hand) #solo para comprobar que shuffle deck funciona :)
         character.drawPhase()
         print(character.hand) #solo para comprobar que shuffle deck funciona :)
-        drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, "DrawPhase", None)
+        drawing.drawingAll(myMouse,DISPLAYSURF, player, npc, "DrawPhase", None, None)
 
-        drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, "DrawPhase", None)
+        # drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, "DrawPhase", None)
         break # al final de todo

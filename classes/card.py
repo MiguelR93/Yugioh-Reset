@@ -1,6 +1,6 @@
 import pygame, sys, time
 from pygame.locals import *
-from script import drawing
+from script import drawing, duel
 
 pygame.init()
 
@@ -131,13 +131,41 @@ class Monster(Card):
 
             if (self.level <= 4) and (self.owner.monstersInField() < 3):
                 # 1. colorear zonas disponibles
-                drawing.drawingAll2(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'])
+                drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'])
                 # 2. elegir zona disponible
+
+                # monsterZoneChosed = None
+                status = None
                 for i in self.owner.monstersZones():
                     if i[0] == None:
                         print(f"Zonas disponibles: {i}")
                         if (myMouse[0] >= i[1].left) and (myMouse[0] <= i[1].left + i[1].width) and (myMouse[1]  >= i[1].top) and (myMouse[1] <= i[1].top + i[1].height) and (pygame.mouse.get_pressed()[0] == True):
                             print("Esta zona está disponible!")
+                            print(self.name)
+                            self.owner.hand.remove(self)
+                            i[0] = self
+                            self.cardX, self.cardY = i[1].left, i[1].top
+                            # print(f"\n\nposiciones de i: {i[1].left, i[1].top}")
+                            # self.cardX = i[1].left
+                            # self.cardY = i[1].top
+                            duel.cartaOpciones = None
+                            self.owner.orderCardsInHand()
+                            status = 'finished'
+                            break
+                            # return duel.cartaOpciones
+                            # monsterZoneChosed = i
+                # if monsterZoneChosed != None:
+                #     # print(f"Zona elegida: {monsterZoneChosed}")
+                #     i[0] = self
+                #     self.owner.hand.remove(self)
+                #     print(f"\n\nEstos son: {i.name, monsterZoneChosed[0]} FIN") # por ahora
+                #     self.cardX, self.cardY = i[1].left, i[1].top
+                #     duel.cartaOpciones = None
+                #     self.owner.orderCardsInHand()
+                #     break
+                    # return duel.cartaOpciones
+                if status == 'finished':
+                    break
                 ## 2.1 Si zona NO está disponible, volver al paso 2
                 ## 2.2 Si zona está disponible ir a 3
                 # 3. invocar al monstruo en la zona elegida
