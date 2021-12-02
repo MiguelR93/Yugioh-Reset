@@ -128,10 +128,16 @@ class Monster(Card):
             if pygame.mouse.get_pressed()[2] == True:
                 print("Se cancela la N. S.")
                 break
+
             if (self.level <= 4) and (self.owner.monstersInField() < 3):
                 # 1. colorear zonas disponibles
                 drawing.drawingAll2(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'])
                 # 2. elegir zona disponible
+                for i in self.owner.monstersZones():
+                    if i[0] == None:
+                        print(f"Zonas disponibles: {i}")
+                        if (myMouse[0] >= i[1].left) and (myMouse[0] <= i[1].left + i[1].width) and (myMouse[1]  >= i[1].top) and (myMouse[1] <= i[1].top + i[1].height) and (pygame.mouse.get_pressed()[0] == True):
+                            print("Esta zona está disponible!")
                 ## 2.1 Si zona NO está disponible, volver al paso 2
                 ## 2.2 Si zona está disponible ir a 3
                 # 3. invocar al monstruo en la zona elegida
