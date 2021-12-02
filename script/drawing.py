@@ -160,6 +160,8 @@ def drawingAll2(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpc
         print(f"Zonas de monstruo{cartaOpciones.owner.monstersZones()}")
         for i in cartaOpciones.owner.monstersZones():
             print(i)
+            if i[0] == None:
+                pygame.draw.rect(DISPLAYSURF, (0,0,0), i[1], 5)
 
     # print("ya debería actualizarse ._.")
     pygame.display.update()

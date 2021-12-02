@@ -113,16 +113,29 @@ class Monster(Card):
 
 
     # def normalSummon(self):
-    def normalSummon(self, mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones):
+    def normalSummon(self,DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones):
         print("Normal Summon!")
-        if (self.level <= 4) and (self.owner.monstersInField() < 3):
-            # 1. colorear zonas disponibles
-            drawing.drawingAll2(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'])
-            # 2. elegir zona disponible
-            ## 2.1 Si zona NO está disponible, volver al paso 2
-            ## 2.2 Si zona está disponible ir a 3
-            # 3. invocar al monstruo en la zona elegida
-            # 4. FIN
+        while True:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+            myMouse = pygame.mouse.get_pos()
+            print(myMouse)
+
+            # 0. clic secundario para cancelar
+            if pygame.mouse.get_pressed()[2] == True:
+                print("Se cancela la N. S.")
+                break
+            if (self.level <= 4) and (self.owner.monstersInField() < 3):
+                # 1. colorear zonas disponibles
+                drawing.drawingAll2(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'])
+                # 2. elegir zona disponible
+                ## 2.1 Si zona NO está disponible, volver al paso 2
+                ## 2.2 Si zona está disponible ir a 3
+                # 3. invocar al monstruo en la zona elegida
+                # 4. FIN
 
 
 class MonsterNormal(Monster):

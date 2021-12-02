@@ -85,7 +85,7 @@ class Character():
         ]
         monstersCounter = 0
         for i in monsters:
-            if i != None:
+            if i[0] != None:
                 monstersCounter += 1
         return monstersCounter
     
@@ -97,7 +97,7 @@ class Character():
         ]
         stCounter = 0
         for i in sTZones:
-            if i != None:
+            if i[0] != None:
                 stCounter += 1
         return stCounter
 
@@ -124,13 +124,13 @@ class Npc(Character):
         self.handY = 100
 
         # gameZone:
-        self.fieldSCZRect = Rect(800, 325, 125, 125)
-        self.leftMzRect = Rect(675, 325, 125, 125)
-        self.centerMzRect = Rect(550, 325, 125, 125)
-        self.rigthMzRect = Rect(425, 325, 125, 125)
-        self.leftSTZRect = Rect(675, 200, 125, 125)
-        self.centerSTZRect = Rect(550, 200, 125, 125)
-        self.rigthSTZRect = Rect(425, 200, 125, 125)
+        self.fieldSCZ = [None, Rect(800, 325, 125, 125)]
+        self.leftMz = [None, Rect(675, 325, 125, 125)]
+        self.centerMz = [None, Rect(550, 325, 125, 125)]
+        self.rigthMz = [None, Rect(425, 325, 125, 125)]
+        self.leftSTZ = [None, Rect(675, 200, 125, 125)]
+        self.centerSTZ = [None, Rect(550, 200, 125, 125)]
+        self.rigthSTZ = [None, Rect(425, 200, 125, 125)]
 
     # def drawACard(self):
     #     if len(self.deck) == 0:
@@ -158,10 +158,10 @@ class Player(Character):
         self.handY = 700
 
         # gameZone:
-        self.fieldSCZRect = Rect(300, 450, 125, 125)
-        self.leftMzRect = Rect(425, 450, 125, 125)
-        self.centerMzRect = Rect(550, 450, 125, 125)
-        self.rigthMzRect = Rect(675, 450, 125, 125)
-        self.leftSTZRect = Rect(425, 575, 125, 125)
-        self.centerSTZRect = Rect(550, 575, 125, 125)
-        self.rigthSTZRect = Rect(675, 575, 125, 125)
+        self.fieldSCZ = [None, Rect(300, 450, 125, 125)]
+        self.leftMz = [None, Rect(425, 450, 125, 125)]
+        self.centerMz = [None, Rect(550, 450, 125, 125)]
+        self.rigthMz = [None, Rect(675, 450, 125, 125)]
+        self.leftSTZ = [None, Rect(425, 575, 125, 125)]
+        self.centerSTZ = [None, Rect(550, 575, 125, 125)]
+        self.rigthSTZ = [None, Rect(675, 575, 125, 125)]
