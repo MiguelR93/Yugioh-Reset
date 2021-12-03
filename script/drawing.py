@@ -173,9 +173,8 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
                     print(i)
                     if i[0] == None:
                         pygame.draw.rect(DISPLAYSURF, (0,0,0), i[1], 5)
-            elif (functionStatus[1] == '1Tributo'):
+            elif (functionStatus[1] == '1Tributo') or (functionStatus[1] == '2Tributo'):
                 for i in cartaOpciones.owner.monstersZones():
-                    print('1 Tributo!')
                     if i[0] != None:
                         pygame.draw.rect(DISPLAYSURF, (255,0,0), i[1], 5)
 

@@ -168,11 +168,19 @@ class Monster(Card):
             # status = None
 
             sacrifice = []
-            for i in self.owner.monstersZones():
-                if i[0] != None:
-                    if (myMouse[0] >= i[1].left) and (myMouse[0] <= i[1].left + i[1].width) and (myMouse[1]  >= i[1].top) and (myMouse[1] <= i[1].top + i[1].height) and (pygame.mouse.get_pressed()[0] == True):
-                        sacrifice.append(i)
+            if functionStatus[1] == '1Tributo':
+                for i in self.owner.monstersZones():
+                    if i[0] != None:
+                        if (myMouse[0] >= i[1].left) and (myMouse[0] <= i[1].left + i[1].width) and (myMouse[1]  >= i[1].top) and (myMouse[1] <= i[1].top + i[1].height) and (pygame.mouse.get_pressed()[0] == True):
+                            sacrifice.append(i)
             
+            # 2 tributos:
+            if functionStatus[1] == '2Tributo':
+                pass
+            # 1. se elige el primero
+            # 1.1 puede retirarse el primero, en cuyo caso volver a 1
+            # 2. se elige el segundo
+
             if len(sacrifice) == tributes:
                 break
 
@@ -235,42 +243,29 @@ class Monster(Card):
                     if status == 'finished':
                         break
 
-                # drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', '1Tributo'])
-                # sacrifice = []
-                # for i in self.owner.monstersZones():
-                #     if i[0] != None:
-                #         if (myMouse[0] >= i[1].left) and (myMouse[0] <= i[1].left + i[1].width) and (myMouse[1]  >= i[1].top) and (myMouse[1] <= i[1].top + i[1].height) and (pygame.mouse.get_pressed()[0] == True):
-                #             sacrifice.append(i)
-                # status = None
-                # continueTributeSummon = None
-                # if len(sacrifice) == 1:
-                #     # print(f"Tributar: {sacrifice}")
-                #     for i in sacrifice:
-                #         self.owner.gy.append(i[0]) # cambiar sus datos!
-                #         i[0] = None
-                #         print(f"\n\nEn el campo: {i}")
-                #         drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, None) # con esto ya se remueve el monstruo del campo
-                #         continueTributeSummon = True
-                    
-                # if continueTributeSummon == True:
-                #     drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'])
 
-                #     for i in self.owner.monstersZones():
-                #         if i[0] == None:
-                #             print(f"Zonas disponibles: {i}")
-                #             if (myMouse[0] >= i[1].left) and (myMouse[0] <= i[1].left + i[1].width) and (myMouse[1]  >= i[1].top) and (myMouse[1] <= i[1].top + i[1].height) and (pygame.mouse.get_pressed()[0] == True):
-                #                 print("Esta zona está disponible!")
-                #                 print(self.name)
-                #                 self.owner.hand.remove(self)
-                #                 i[0] = self
-                #                 self.cardX, self.cardY = i[1].left, i[1].top
-                #                 duel.cartaOpciones = None
-                #                 self.owner.orderCardsInHand()
-                #                 self.summonedThisTurn = True
-                #                 self.canChangeItsPosition = False 
-                #                 status = 'finished'
-                # if status == 'finished':
-                #     break
+            if (self.level >= 7) and (self.owner.monstersInField() > 0):
+                # 1. colorear potenciales tributos # esto lo hace también la siguiente función
+                # 2. elegir tributos
+                sacrifice = self.tributes(2, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', '2Tributo'])
+                # 2.1 si se cancela, actualizar la imagen:
+                if len(sacrifice) == 0:
+                    break
+                # 3. una vez lo tributos son elegidos enviarlos al gy
+                elif len(sacrifice) == 1:
+                    for i in sacrifice:
+                        # print(f"\n\n\nTodo mi sacrificio: {i[0].name}\n\n\n")
+                        self.owner.gy.append(i[0])
+                        i[0] = None
+                    drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, None) # aquí para actualizar que no hay monstruo sen campo, indispensable?
+                # 4. poner el monstruo en campo
+                    # invocar!
+                    status = None
+                    if self.placeAMonster(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'], 'NormalLvl!=4') == 'finished':
+                        status = 'finished'
+                    if status == 'finished':
+                        break
+
 
 class MonsterNormal(Monster):
 
