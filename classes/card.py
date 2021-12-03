@@ -112,8 +112,37 @@ class Monster(Card):
         return showOptions
 
 
+    def placeAMonster(self, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, functionStatus):
+        while True:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+            myMouse = pygame.mouse.get_pos()
+            drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, functionStatus)
+            status = None
+            for i in self.owner.monstersZones():
+                if i[0] == None: # solamente se mostrarán las zonas disponibles
+                    # print(f"Zonas disponibles: {i}")
+                    if (myMouse[0] >= i[1].left) and (myMouse[0] <= i[1].left + i[1].width) and (myMouse[1]  >= i[1].top) and (myMouse[1] <= i[1].top + i[1].height) and (pygame.mouse.get_pressed()[0] == True): # 2.2 Si zona está disponible ir a 3
+                        # print("Esta zona está disponible!")
+                        # print(self.name)
+                        # 3. invocar al monstruo en la zona elegida:
+                        i[0] = self # agrega al monstruo al campo
+                        self.owner.hand.remove(self) # quita al monstruo de la mano
+                        self.cardX, self.cardY = i[1].left, i[1].top # cambia las coordenadas del monstruo
+                        duel.cartaOpciones = None # vuelve a estar en blanco
+                        self.owner.orderCardsInHand() # ordena las cartas en mano
+                        self.summonedThisTurn = True # atributos que deben cambiar al invocarse el monsturo
+                        self.canChangeItsPosition = False # atributos que deben cambiar al invocarse el monsturo
+                        status = 'finished'
+            if status == 'finished':
+                break
+        return 'finished'
+
+
     # def normalSummon(self):
-    def normalSummon(self,DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones):
+    def normalSummon(self, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones):
         print("Normal Summon!")
         while True:
             for event in pygame.event.get():
@@ -136,26 +165,30 @@ class Monster(Card):
 
                 # monsterZoneChosed = None
                 status = None
-                for i in self.owner.monstersZones():
-                    if i[0] == None:
-                        print(f"Zonas disponibles: {i}")
-                        if (myMouse[0] >= i[1].left) and (myMouse[0] <= i[1].left + i[1].width) and (myMouse[1]  >= i[1].top) and (myMouse[1] <= i[1].top + i[1].height) and (pygame.mouse.get_pressed()[0] == True):
-                            print("Esta zona está disponible!")
-                            print(self.name)
-                            self.owner.hand.remove(self)
-                            i[0] = self
-                            self.cardX, self.cardY = i[1].left, i[1].top
-                            duel.cartaOpciones = None
-                            self.owner.orderCardsInHand()
-                            self.summonedThisTurn = True
-                            self.canChangeItsPosition = False
-                            status = 'finished'
+                if self.placeAMonster(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles']) == 'finished':
+                    status = 'finished'
+                # for i in self.owner.monstersZones():
+                #     if i[0] == None: # solamente se mostrarán las zonas disponibles
+                #         # print(f"Zonas disponibles: {i}")
+                #         if (myMouse[0] >= i[1].left) and (myMouse[0] <= i[1].left + i[1].width) and (myMouse[1]  >= i[1].top) and (myMouse[1] <= i[1].top + i[1].height) and (pygame.mouse.get_pressed()[0] == True): # 2.2 Si zona está disponible ir a 3
+                #             # print("Esta zona está disponible!")
+                #             # print(self.name)
+                #             # 3. invocar al monstruo en la zona elegida:
+                #             i[0] = self # agrega al monstruo al campo
+                #             self.owner.hand.remove(self) # quita al monstruo de la mano
+                #             self.cardX, self.cardY = i[1].left, i[1].top # cambia las coordenadas del monstruo
+                #             duel.cartaOpciones = None # vuelve a estar en blanco
+                #             self.owner.orderCardsInHand() # ordena las cartas en mano
+                #             self.summonedThisTurn = True # atributos que deben cambiar al invocarse el monsturo
+                #             self.canChangeItsPosition = False # atributos que deben cambiar al invocarse el monsturo
+                #             status = 'finished'
                             # break # volverá?
+                # print(status)
                 if status == 'finished':
                     break
-                ## 2.1 Si zona NO está disponible, volver al paso 2
-                ## 2.2 Si zona está disponible ir a 3
-                # 3. invocar al monstruo en la zona elegida
+
+                
+                
                 # 4. FIN
             
             if (self.level >= 5) and (self.level <= 6) and (self.owner.monstersInField() > 0):
