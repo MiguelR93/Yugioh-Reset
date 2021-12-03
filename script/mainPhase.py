@@ -31,9 +31,8 @@ def mainPhase(DISPLAYSURF, player, npc):
                 # break # ir a BP
                 return "EndPhase"
         
-        # duel.cartaOpciones = None
+
         for i in player.hand: # Detecta sobre qué carta está el mouse
-            # if (myMouse[0] >= i.cardX) and (myMouse[0] <= i.cardX + i.cardWidth) and (myMouse[1]  >= i.cardY) and (myMouse[1] <= i.cardY + i.cardHeight):
             if (myMouse[0] >= i.cardX) and (myMouse[0] <= i.cardX + i.cardWidth) and (myMouse[1]  >= i.cardY) and (myMouse[1] <= i.cardY + i.cardHeight) and (pygame.mouse.get_pressed()[0] == True) and (duel.cartaOpciones == i):
                 duel.cartaOpciones = None
             elif (pygame.mouse.get_pressed()[2] == True):
@@ -46,9 +45,7 @@ def mainPhase(DISPLAYSURF, player, npc):
             duel.cartaOpciones.options()
             # detectando si estamos haciendo clic en una opción de una carta
         
-        # if (duel.cartaOpciones != None) and (type(duel.cartaOpciones.options()) == None):
-        # if (duel.cartaOpciones != None) and (len(duel.cartaOpciones.optionsAble) != 0):
-            # for i in duel.cartaOpciones.optionsAble:
+
         if duel.cartaOpciones != None:
             for i in duel.cartaOpciones.options():
                 try:
@@ -66,10 +63,5 @@ def mainPhase(DISPLAYSURF, player, npc):
                     print(e)
                     pass
 
-        # if duel.cartaOpciones != None: # debe desplegarse una serie de opciones y cada opción debe pasar por el bucle: lo de abajo debería ser un bucle :V
-        #     if (myMouse[0] >= duel.cartaOpciones.cardX) and (myMouse[0] <= duel.cartaOpciones.cardX + duel.cartaOpciones.cardWidth) and (myMouse[1]  >= duel.cartaOpciones.cardY) and (myMouse[1] <= duel.cartaOpciones.cardY + duel.cartaOpciones.cardHeight) and (pygame.mouse.get_pressed()[0] == True) and (duel.cartaOpciones == i):
-        #         pass
 
         drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, "MainPhase", duel.cartaOpciones, None)
-
-        # detectar la posición del mouse sobre una carta
