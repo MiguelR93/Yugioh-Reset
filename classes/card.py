@@ -113,7 +113,7 @@ class Monster(Card):
         return showOptions
 
 
-    def placeAMonster(self, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, functionStatus):
+    def placeAMonster(self, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, functionStatus, kindSummon):
         while True:
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -124,7 +124,7 @@ class Monster(Card):
             status = None
 
 
-            if pygame.mouse.get_pressed()[2] == True:
+            if (pygame.mouse.get_pressed()[2] == True) and (kindSummon == 'NormalLvl<=4'):
                 print("Se cancela la N. S.")
                 break
 
@@ -207,7 +207,7 @@ class Monster(Card):
 
                 # monsterZoneChosed = None
                 status = None
-                if self.placeAMonster(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles']) == 'finished':
+                if self.placeAMonster(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'], 'NormalLvl<=4') == 'finished':
                     status = 'finished'
                 if status == 'finished':
                     break
@@ -230,7 +230,7 @@ class Monster(Card):
                 # 4. poner el monstruo en campo
                     # invocar!
                     status = None
-                    if self.placeAMonster(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles']) == 'finished':
+                    if self.placeAMonster(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'], 'NormalLvl!=4') == 'finished':
                         status = 'finished'
                     if status == 'finished':
                         break
