@@ -49,16 +49,16 @@ def mainPhase(DISPLAYSURF, player, npc):
         if duel.cartaOpciones != None:
             for i in duel.cartaOpciones.options():
                 try:
-                    print(f"{i}: es la opción :V")
-                    print(duel.cartaOpciones)
+                    # print(f"{i}: es la opción :V")
+                    # print(duel.cartaOpciones)
                     if (myMouse[0] >= duel.cartaOpciones.cardX) and (myMouse[0] <= duel.cartaOpciones.cardX + duel.cartaOpciones.cardWidth) and (myMouse[1]  >= i[0]) and (myMouse[1] <= i[0] + 25) and (pygame.mouse.get_pressed()[0] == True):
-                        print("No me presiones >:V", i[2])
+                        # print("No me presiones >:V", i[2])
                         # Aplicando las opciones
                         if i[2] == 'Normal S.':
-                            print("En efecto, normal summon")
+                            # print("En efecto, normal summon")
                             duel.cartaOpciones.normalSummon(DISPLAYSURF, player, npc, "MainPhase", duel.cartaOpciones)
-                            print(player.hand)
-                            print(f"\n\nAhora duel.cartaOpciones es: {duel.cartaOpciones}")
+                            # print(player.hand)
+                            # print(f"\n\nAhora duel.cartaOpciones es: {duel.cartaOpciones}")
                 except AttributeError as e:
                     print(e)
                     pass
