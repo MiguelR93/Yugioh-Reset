@@ -176,6 +176,9 @@ class Monster(Card):
             
             # 2 tributos:
             if functionStatus[1] == '2Tributo':
+                if len(functionStatus) < 3: # recién añaidido
+                    functionStatus.append(sacrifice)
+                drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, functionStatus)
                 for i in self.owner.monstersZones():
                     if i[0] != None:
                         if i in sacrifice:

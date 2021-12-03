@@ -177,10 +177,15 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
                 for i in cartaOpciones.owner.monstersZones():
                     if i[0] != None:
                         pygame.draw.rect(DISPLAYSURF, (255,0,0), i[1], 5)
+                if len(functionStatus) == 3:
+                    for i in functionStatus[2]:
+                        print(f"\n\n\n\nEn drawing, {functionStatus[2], i, i[1]}\n\n\n\n")
+                        # pygame.rect.rect(DISPLAYSURF, (255,255,255), i[1])
+                        pygame.draw.rect(DISPLAYSURF, (0,0,255), i[1], 5)
 
     # print("ya debería actualizarse ._.")
     pygame.display.update()
-    clock.tick(10)
+    clock.tick(15)
 
 def drawingAll3(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones):
     DISPLAYSURF.fill((255, 255, 255))
