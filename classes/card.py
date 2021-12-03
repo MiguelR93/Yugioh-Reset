@@ -153,6 +153,7 @@ class Monster(Card):
 
 
     def tributes(self, tributes, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, functionStatus):
+        sacrifice = []
         while True:
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -167,7 +168,6 @@ class Monster(Card):
 
             # status = None
 
-            sacrifice = []
             if functionStatus[1] == '1Tributo':
                 for i in self.owner.monstersZones():
                     if i[0] != None:
@@ -176,10 +176,20 @@ class Monster(Card):
             
             # 2 tributos:
             if functionStatus[1] == '2Tributo':
-                pass
-            # 1. se elige el primero
+                for i in self.owner.monstersZones():
+                    if i[0] != None:
+                        if i in sacrifice:
+                            print(f"\n\n\nActualmente en sacrificio: {sacrifice}\n\n\n")
             # 1.1 puede retirarse el primero, en cuyo caso volver a 1
+                            if (myMouse[0] >= i[1].left) and (myMouse[0] <= i[1].left + i[1].width) and (myMouse[1]  >= i[1].top) and (myMouse[1] <= i[1].top + i[1].height) and (pygame.mouse.get_pressed()[0] == True):
+                                sacrifice.remove(i)
+                                print(f"\n\n\nActualmente en sacrificio con retiro: {sacrifice}\n\n\n")
+            # 1. se elige el primero
             # 2. se elige el segundo
+                        elif (myMouse[0] >= i[1].left) and (myMouse[0] <= i[1].left + i[1].width) and (myMouse[1]  >= i[1].top) and (myMouse[1] <= i[1].top + i[1].height) and (pygame.mouse.get_pressed()[0] == True):
+                            sacrifice.append(i)
+                            print(f"\n\n\nActualmente en sacrificio con adición: {sacrifice}\n\n\n")
+
 
             if len(sacrifice) == tributes:
                 break
@@ -252,7 +262,7 @@ class Monster(Card):
                 if len(sacrifice) == 0:
                     break
                 # 3. una vez lo tributos son elegidos enviarlos al gy
-                elif len(sacrifice) == 1:
+                elif len(sacrifice) == 2:
                     for i in sacrifice:
                         # print(f"\n\n\nTodo mi sacrificio: {i[0].name}\n\n\n")
                         self.owner.gy.append(i[0])
