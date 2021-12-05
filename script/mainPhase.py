@@ -59,6 +59,11 @@ def mainPhase(DISPLAYSURF, player, npc):
                             duel.cartaOpciones.normalSummon(DISPLAYSURF, player, npc, "MainPhase", duel.cartaOpciones)
                             # print(player.hand)
                             # print(f"\n\nAhora duel.cartaOpciones es: {duel.cartaOpciones}")
+                        elif i[2] == 'Set':
+                            # print("En efecto, normal summon")
+                            duel.cartaOpciones.setSummon(DISPLAYSURF, player, npc, "MainPhase", duel.cartaOpciones)
+                            # print(player.hand)
+                            # print(f"\n\nAhora duel.cartaOpciones es: {duel.cartaOpciones}")
                 except AttributeError as e:
                     print(e)
                     pass

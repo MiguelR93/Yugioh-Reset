@@ -7,6 +7,7 @@ from script import duel
 pygame.init()
 # main values
 clock = pygame.time.Clock()
+defenseFD = pygame.image.load("images/cards/1Face-Down.png")
 
 # Fonts:
 turnCounterFont = pygame.font.Font(None,40)
@@ -133,8 +134,12 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
     for i in player.monstersZones():
         if i[0] != None:
             print(f"Esto es el i que dibuja: {i}")
-            pygame.draw.rect(DISPLAYSURF, (0, 5, 0), (i[0].cardX, i[0].cardY, i[0].cardWidth, i[0].cardHeight), 0)
-            DISPLAYSURF.blit(i[0].illustration, (i[0].cardX, i[0].cardY))
+            if i[0].battlePosition == 'Attack':
+                pygame.draw.rect(DISPLAYSURF, (0, 5, 0), (i[0].cardX, i[0].cardY, i[0].cardWidth, i[0].cardHeight), 0)
+                DISPLAYSURF.blit(i[0].illustration, (i[0].cardX, i[0].cardY))
+            elif (i[0].battlePosition == 'Defense') and (i[0].facePosition == 'down'):
+                pygame.draw.rect(DISPLAYSURF, (0, 5, 0), (i[0].cardX, i[0].cardY, i[0].cardHeight, i[0].cardWidth), 0)
+                DISPLAYSURF.blit(defenseFD, (i[0].cardX, i[0].cardY))
 
 
     # player
@@ -144,7 +149,7 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
         
 
     if (functionStatus!= None):
-        if (functionStatus[0] == 'normalSummon'):
+        if (functionStatus[0] == 'normalSummon') or (functionStatus[0] == 'setSummon'):
             if (functionStatus[1] == 'zonasDisponibles'):
                 print(f"Zonas de monstruo{cartaOpciones.owner.monstersZones()}")
                 for i in cartaOpciones.owner.monstersZones():

@@ -124,7 +124,7 @@ class Monster(Card):
             status = None
 
 
-            if (pygame.mouse.get_pressed()[2] == True) and (kindSummon == 'NormalLvl<=4'):
+            if (pygame.mouse.get_pressed()[2] == True) and ((kindSummon == 'NormalLvl<=4') or (kindSummon == 'SetLvl<=4')):
                 print("Se cancela la N. S.")
                 break
 
@@ -142,10 +142,18 @@ class Monster(Card):
                         self.owner.orderCardsInHand() # ordena las cartas en mano
                         self.summonedThisTurn = True # atributos que deben cambiar al invocarse el monsturo
                         self.canChangeItsPosition = False # atributos que deben cambiar al invocarse el monsturo
-                        self.battlePosition = 'Attack'
-                        self.summonKind = 'Normal Summon'
                         self.placeOnGame = 'field'
-                        self.facePosition = 'up'
+                        if functionStatus[0] == 'normalSummon':
+                            self.battlePosition = 'Attack'
+                            self.facePosition = 'up'
+                            if kindSummon == 'NormalLvl>4':
+                                self.summonKind = ['Normal Summon', 'Tribute Summon']
+                            else:
+                                self.summonKind = 'Normal Summon'
+                        elif 'setSummon':
+                            self.battlePosition = 'Defense'
+                            self.summonKind = 'Set'
+                            self.facePosition = 'down'
                         status = 'finished'
             if status == 'finished':
                 break
@@ -251,7 +259,7 @@ class Monster(Card):
                 # 4. poner el monstruo en campo
                     # invocar!
                     status = None
-                    if self.placeAMonster(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'], 'NormalLvl!=4') == 'finished':
+                    if self.placeAMonster(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'], 'NormalLvl>4') == 'finished':
                         status = 'finished'
                     if status == 'finished':
                         break
@@ -274,10 +282,86 @@ class Monster(Card):
                 # 4. poner el monstruo en campo
                     # invocar!
                     status = None
-                    if self.placeAMonster(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'], 'NormalLvl!=4') == 'finished':
+                    if self.placeAMonster(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'], 'NormalLvl>4') == 'finished':
                         status = 'finished'
                     if status == 'finished':
                         break
+
+
+    def setSummon(self, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones):
+        print("Set Summon!")
+        while True:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+            myMouse = pygame.mouse.get_pos()
+            print(myMouse)
+
+            # 0. clic secundario para cancelar
+            if pygame.mouse.get_pressed()[2] == True:
+                print("Se cancela la S. S.")
+                break
+
+            if (self.level <= 4) and (self.owner.monstersInField() < 3):
+                # 1. colorear zonas disponibles
+                # drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'])
+                # 2. elegir zona disponible
+
+                # monsterZoneChosed = None
+                status = None
+                if self.placeAMonster(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['setSummon', 'zonasDisponibles'], 'SetlLvl<=4') == 'finished':
+                    status = 'finished'
+                if status == 'finished':
+                    break
+
+            
+            if (self.level >= 5) and (self.level <= 6) and (self.owner.monstersInField() > 0):
+                # 1. colorear potenciales tributos # esto lo hace también la siguiente función
+                # 2. elegir tributos
+                sacrifice = self.tributes(1, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['setSummon', '1Tributo'])
+                # 2.1 si se cancela, actualizar la imagen:
+                if len(sacrifice) == 0:
+                    break
+                # 3. una vez lo tributos son elegidos enviarlos al gy
+                elif len(sacrifice) == 1:
+                    for i in sacrifice:
+                        # print(f"\n\n\nTodo mi sacrificio: {i[0].name}\n\n\n")
+                        self.owner.gy.append(i[0])
+                        i[0] = None
+                    drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, None) # aquí para actualizar que no hay monstruo sen campo, indispensable?
+                # 4. poner el monstruo en campo
+                    # invocar!
+                    status = None
+                    if self.placeAMonster(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['setSummon', 'zonasDisponibles'], 'SetLvl!=4') == 'finished':
+                        status = 'finished'
+                    if status == 'finished':
+                        break
+
+
+            if (self.level >= 7) and (self.owner.monstersInField() > 0):
+                # 1. colorear potenciales tributos # esto lo hace también la siguiente función
+                # 2. elegir tributos
+                sacrifice = self.tributes(2, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['setSummon', '2Tributo'])
+                # 2.1 si se cancela, actualizar la imagen:
+                if len(sacrifice) == 0:
+                    break
+                # 3. una vez lo tributos son elegidos enviarlos al gy
+                elif len(sacrifice) == 2:
+                    for i in sacrifice:
+                        # print(f"\n\n\nTodo mi sacrificio: {i[0].name}\n\n\n")
+                        self.owner.gy.append(i[0])
+                        i[0] = None
+                    drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, None) # aquí para actualizar que no hay monstruo sen campo, indispensable?
+                # 4. poner el monstruo en campo
+                    # invocar!
+                    status = None
+                    if self.placeAMonster(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['setSummon', 'zonasDisponibles'], 'SetLvl!=4') == 'finished':
+                        status = 'finished'
+                    if status == 'finished':
+                        break
+
 
 
 class MonsterNormal(Monster):
