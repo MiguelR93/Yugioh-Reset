@@ -7,6 +7,15 @@ import classes.card as card
 import classes.cardsEffects as cardsEffects
 # # from script.rush import *
 
+def openIlustration(card):
+    try:
+        return pygame.image.load(f"images/cards/{card[1].replace(' ', '').replace('-', '')}.png")
+    except FileNotFoundError:
+        print("No se encontró la imagen")
+        # try:
+        return pygame.image.load(f"images/cards/trap.png")
+
+
 def openDeck(character):
     try:
         exampleFile = open('deck/lukeDeck.csv')
@@ -26,7 +35,8 @@ def openDeck(character):
                 i[3],
                 i[4],
                 i[5],
-                pygame.image.load(f"images/cards/{i[1].replace(' ', '').replace('-', '')}.png"),
+                # pygame.image.load(f"images/cards/{i[1].replace(' ', '').replace('-', '')}.png"),
+                openIlustration(i),
                 character
             )
             deckResult.append(newObject)
@@ -47,7 +57,8 @@ def openDeck(character):
                 i[7],
                 i[8],
                 i[9],
-                pygame.image.load(f"images/cards/{i[1].replace(' ', '').replace('-', '')}.png"),
+                # pygame.image.load(f"images/cards/{i[1].replace(' ', '').replace('-', '')}.png"),
+                openIlustration(i),
                 character
             )
             deckResult.append(newObject)
@@ -65,7 +76,8 @@ def openDeck(character):
                 i[8],
                 i[9],
                 i[10],
-                pygame.image.load(f"images/cards/{i[1].replace(' ', '').replace('-', '')}.png"),
+                # pygame.image.load(f"images/cards/{i[1].replace(' ', '').replace('-', '')}.png"),
+                openIlustration(i),
                 character
             )
             deckResult.append(newObject)
@@ -90,7 +102,8 @@ def openDeck(character):
                 i[3],
                 i[4],
                 i[5],
-                pygame.image.load("images/cards/trap.png"),
+                # pygame.image.load(f"images/cards/{i[1].replace(' ', '').replace('-', '')}.png"),
+                openIlustration(i),
                 character
             )
             deckResult.append(newObject)
@@ -104,7 +117,8 @@ def openDeck(character):
                 i[3],
                 i[4],
                 i[5],
-                pygame.image.load("images/cards/spell.png"),
+                # pygame.image.load(f"images/cards/{i[1].replace(' ', '').replace('-', '')}.png"),
+                openIlustration(i),
                 character
             )
             deckResult.append(newObject)
