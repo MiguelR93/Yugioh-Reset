@@ -179,4 +179,4 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
 
 
     pygame.display.update()
-    clock.tick(10)
+    clock.tick(7)

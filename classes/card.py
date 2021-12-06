@@ -428,13 +428,16 @@ class SpellTrap(Card):
                     pygame.quit()
                     sys.exit()
             myMouse = pygame.mouse.get_pos()
+            print(f"\n\n\n\nPosción de mouse en placeASTCard: {myMouse}")
             drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, functionStatus)
+            print("Ya salimos de dibujar y seguimos en placeASTCard")
             status = None
 
 
             if (pygame.mouse.get_pressed()[2] == True): # and ((kindPlacingCard == 'NormalLvl<=4') or (kindPlacingCard == 'SetLvl<=4')):
                 print("Se cancela la activación/set de s/t")
                 break
+            
 
             for i in self.owner.sTZones():
                 if i[0] == None: # solamente se mostrarán las zonas disponibles
@@ -486,6 +489,7 @@ class SpellTrap(Card):
             if (self.icon != 'field') and (self.owner.sTInZones() < 3):
                 # 1. colorear zonas disponibles
                 # drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'])
+                drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['setST', 'zonasDisponibles'])
                 # 2. elegir zona disponible
 
                 # monsterZoneChosed = None
