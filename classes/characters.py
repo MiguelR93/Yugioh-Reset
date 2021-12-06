@@ -175,7 +175,7 @@ class Npc(Character):
 class Player(Character):
     def __init__(self, id, name, playerX, playerY, avatarFront, avatarRight, avatarLeft, avatarBack):
         super().__init__(id, name, playerX, playerY, avatarFront, avatarRight, avatarLeft, avatarBack)
-        self.handY = 775
+        self.handY = 700
 
         # gameZone:
         self.fieldSCZ = [None, Rect(300, 450, 125, 125)]
