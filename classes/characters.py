@@ -77,6 +77,26 @@ class Character():
         ]
         return monsters
 
+    def sTZones(self):
+        stZones = [
+            self.rigthSTZ, 
+            self.centerSTZ, 
+            self.leftSTZ
+        ]
+        return stZones
+    
+    def sTInZones(self):
+        st = [
+            self.rigthSTZ, 
+            self.centerSTZ, 
+            self.leftSTZ
+        ]
+        sTCounter = 0
+        for i in st:
+            if i[0] != None:
+                sTCounter += 1
+        return sTCounter
+
     def monstersInField(self):
         monsters = [
             self.rigthMz, 
@@ -155,7 +175,7 @@ class Npc(Character):
 class Player(Character):
     def __init__(self, id, name, playerX, playerY, avatarFront, avatarRight, avatarLeft, avatarBack):
         super().__init__(id, name, playerX, playerY, avatarFront, avatarRight, avatarLeft, avatarBack)
-        self.handY = 700
+        self.handY = 775
 
         # gameZone:
         self.fieldSCZ = [None, Rect(300, 450, 125, 125)]

@@ -59,11 +59,16 @@ def mainPhase(DISPLAYSURF, player, npc):
                             duel.cartaOpciones.normalSummon(DISPLAYSURF, player, npc, "MainPhase", duel.cartaOpciones)
                             # print(player.hand)
                             # print(f"\n\nAhora duel.cartaOpciones es: {duel.cartaOpciones}")
-                        elif i[2] == 'Set':
+                        elif (i[2] == 'Set') and (isinstance(duel.cartaOpciones, card.Monster)): # podemos comentar desde "and"
+                            # print(f"\n\n\n\n\nEsto está en set summon: {i} ")
                             # print("En efecto, normal summon")
                             duel.cartaOpciones.setSummon(DISPLAYSURF, player, npc, "MainPhase", duel.cartaOpciones)
                             # print(player.hand)
                             # print(f"\n\nAhora duel.cartaOpciones es: {duel.cartaOpciones}")
+
+                        elif (i[2] == 'Set') and (isinstance(duel.cartaOpciones, card.SpellTrap)):
+                            print("\n\n\nSí es instancia de st")
+                            duel.cartaOpciones.actSetST(DISPLAYSURF, player, npc, "MainPhase", duel.cartaOpciones)
                 except AttributeError as e:
                     print(e)
                     pass

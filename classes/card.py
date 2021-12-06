@@ -124,7 +124,7 @@ class Monster(Card):
             status = None
 
 
-            if (pygame.mouse.get_pressed()[2] == True) and ((kindSummon == 'NormalLvl<=4') or (kindSummon == 'SetLvl<=4')):
+            if (pygame.mouse.get_pressed()[2] == True) and (self.level <= 4):
                 print("Se cancela la N. S.")
                 break
 
@@ -150,7 +150,7 @@ class Monster(Card):
                                 self.summonKind = ['Normal Summon', 'Tribute Summon']
                             else:
                                 self.summonKind = 'Normal Summon'
-                        elif 'setSummon':
+                        elif functionStatus[0] == 'setSummon':
                             self.battlePosition = 'Defense'
                             self.summonKind = 'Set'
                             self.facePosition = 'down'
@@ -392,7 +392,6 @@ class SpellTrap(Card):
         self.canBeActivatedThisTurn = None
 
 
-
     def options(self):
         showOptions = []
         positionY = self.cardY
@@ -409,13 +408,8 @@ class SpellTrap(Card):
                 self.optionActiveEff[0] = positionY - 25
                 positionY -= 25
                 showOptions.append(self.optionActiveEff)
-            # elif self.cardType == 'TRAP':
-            #     # print('NO Puedes activar')
-            #     pass
             
             # Set
-            # if (self.cardType == 'SPELL') and (self.owner.cardsInSTZones() < 3) and (self.icon == 'normal') :# falta evaluar que haya espacio
-                # print(f"{self.name, self.level} can be set")
                 self.optionSet[0] = positionY - 25
                 positionY -= 25
                 showOptions.append(self.optionSet)
@@ -425,3 +419,78 @@ class SpellTrap(Card):
                 positionY -= 25
                 showOptions.append(self.optionSet)
         return showOptions
+
+
+    def placeASTCard(self, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, functionStatus, kindPlacingCard):
+        while True:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+            myMouse = pygame.mouse.get_pos()
+            drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, functionStatus)
+            status = None
+
+
+            if (pygame.mouse.get_pressed()[2] == True): # and ((kindPlacingCard == 'NormalLvl<=4') or (kindPlacingCard == 'SetLvl<=4')):
+                print("Se cancela la activación/set de s/t")
+                break
+
+            for i in self.owner.sTZones():
+                if i[0] == None: # solamente se mostrarán las zonas disponibles
+                    # print(f"Zonas disponibles: {i}")
+                    if (myMouse[0] >= i[1].left) and (myMouse[0] <= i[1].left + i[1].width) and (myMouse[1]  >= i[1].top) and (myMouse[1] <= i[1].top + i[1].height) and (pygame.mouse.get_pressed()[0] == True): # 2.2 Si zona está disponible ir a 3
+                        # print("Esta zona está disponible!")
+                        # print(self.name)
+                        # 3. invocar al monstruo en la zona elegida:
+                        i[0] = self # agrega al monstruo al campo
+                        self.owner.hand.remove(self) # quita al monstruo de la mano
+                        self.cardX, self.cardY = i[1].left, i[1].top # cambia las coordenadas del monstruo
+                        duel.cartaOpciones = None # vuelve a estar en blanco
+                        self.owner.orderCardsInHand() # ordena las cartas en mano
+                        self.placedThisTurn = True
+                        self.placeOnGame = 'field'
+                        # Set
+                        if kindPlacingCard == 'ActiveST':
+                            self.facePosition = 'up'
+                            self.position = 'active'
+                        elif kindPlacingCard == 'SetST':
+                            self.facePosition = 'down'
+                            self.position = 'set'
+                            if self.cardType == 'SPELL':
+                                self.canBeActivatedThisTurn = True
+                            elif self.cardType == 'TRAP':
+                                self.canBeActivatedThisTurn = False
+                        status = 'finished'
+            if status == 'finished':
+                break
+        return 'finished'
+
+
+    def actSetST(self, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones):
+        while True:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+            myMouse = pygame.mouse.get_pos()
+            print(myMouse)
+
+            # 0. clic secundario para cancelar
+            if pygame.mouse.get_pressed()[2] == True:
+                print("Se cancela la activación/set de s/t")
+                break
+
+            # set
+            if (self.icon != 'field') and (self.owner.sTInZones() < 3):
+                # 1. colorear zonas disponibles
+                # drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'])
+                # 2. elegir zona disponible
+
+                # monsterZoneChosed = None
+                status = None
+                if self.placeASTCard(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['setST', 'zonasDisponibles'], 'SetST') == 'finished':
+                    status = 'finished'
+                if status == 'finished':
+                    break

@@ -8,6 +8,7 @@ pygame.init()
 # main values
 clock = pygame.time.Clock()
 defenseFD = pygame.image.load("images/cards/1Face-Down.png")
+stFD = pygame.image.load("images/cards/0Face-Down.png")
 
 # Fonts:
 turnCounterFont = pygame.font.Font(None,40)
@@ -140,7 +141,13 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
             elif (i[0].battlePosition == 'Defense') and (i[0].facePosition == 'down'):
                 pygame.draw.rect(DISPLAYSURF, (0, 5, 0), (i[0].cardX, i[0].cardY, i[0].cardHeight, i[0].cardWidth), 0)
                 DISPLAYSURF.blit(defenseFD, (i[0].cardX, i[0].cardY))
-
+    
+    for i in player.sTZones():
+        if i[0] != None:
+            print(f"\n\n\n\n\nEsto hay en las ST: {i, i[0].cardX, i[0].cardY, i[0].cardWidth, i[0].cardHeight, i[0].position}\n\n\n\n\n")
+            if (i[0].position == 'set'):
+                pygame.draw.rect(DISPLAYSURF, (0, 5, 0), (i[0].cardX, i[0].cardY, i[0].cardWidth, i[0].cardHeight), 0)
+                DISPLAYSURF.blit(stFD, (i[0].cardX, i[0].cardY))
 
     # player
     DISPLAYSURF.blit(playersName, (150,63))
@@ -163,7 +170,13 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
                 if len(functionStatus) == 3:
                     for i in functionStatus[2]: # colorea los sacrificios
                         pygame.draw.rect(DISPLAYSURF, (0,0,255), i[1], 5)
+        elif (functionStatus[0] == 'setST'):
+            if (functionStatus[1] == 'zonasDisponibles'):
+                for i in cartaOpciones.owner.sTZones():
+                    print(i)
+                    if i[0] == None:
+                        pygame.draw.rect(DISPLAYSURF, (0,0,0), i[1], 5)
 
 
     pygame.display.update()
-    clock.tick(15)
+    clock.tick(10)
