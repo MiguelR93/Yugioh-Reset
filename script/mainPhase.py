@@ -68,7 +68,9 @@ def mainPhase(DISPLAYSURF, player, npc):
 
                         elif (i[2] == 'Set') and (isinstance(duel.cartaOpciones, card.SpellTrap)):
                             print("\n\n\nSí es instancia de st")
-                            duel.cartaOpciones.actSetST(DISPLAYSURF, player, npc, "MainPhase", duel.cartaOpciones)
+                            duel.cartaOpciones.actSetST(DISPLAYSURF, player, npc, "MainPhase", duel.cartaOpciones, 'SetST')
+                        elif (i[2] == 'Activar') and (isinstance(duel.cartaOpciones, card.SpellTrap)):
+                            duel.cartaOpciones.actSetST(DISPLAYSURF, player, npc, "MainPhase", duel.cartaOpciones, 'ActST')
                 except AttributeError as e:
                     print(e)
                     pass

@@ -454,9 +454,9 @@ class SpellTrap(Card):
                         self.placedThisTurn = True
                         self.placeOnGame = 'field'
                         # Set
-                        if kindPlacingCard == 'ActiveST':
+                        if kindPlacingCard == 'ActST':
                             self.facePosition = 'up'
-                            self.position = 'active'
+                            self.position = 'act'
                         elif kindPlacingCard == 'SetST':
                             self.facePosition = 'down'
                             self.position = 'set'
@@ -470,7 +470,7 @@ class SpellTrap(Card):
         return 'finished'
 
 
-    def actSetST(self, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones):
+    def actSetST(self, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, kindPlacingCard):
         while True:
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -486,15 +486,22 @@ class SpellTrap(Card):
                 break
 
             # set
-            if (self.icon != 'field') and (self.owner.sTInZones() < 3):
+            if (self.icon != 'field') and (self.placeOnGame == 'hand') and (self.owner.sTInZones() < 3):
                 # 1. colorear zonas disponibles
-                # drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['normalSummon', 'zonasDisponibles'])
                 drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['setST', 'zonasDisponibles'])
                 # 2. elegir zona disponible
 
-                # monsterZoneChosed = None
                 status = None
-                if self.placeASTCard(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['setST', 'zonasDisponibles'], 'SetST') == 'finished':
+                if self.placeASTCard(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['setST', 'zonasDisponibles'], kindPlacingCard) == 'finished':
+                    status = 'finished'
+                if status == 'finished':
+                    break
+            # Active (From hand)
+            elif (self.icon != 'field') and (self.cardType != 'SPELL') and (self.placeOnGame == 'hand') and (self.owner.sTInZones() < 3):
+                drawing.drawingAll(myMouse, DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['actST', 'zonasDisponibles'])
+
+                status = None
+                if self.placeASTCard(DISPLAYSURF, player, npc, currentlyPhase, cartaOpciones, ['actST', 'zonasDisponibles'], kindPlacingCard) == 'finished':
                     status = 'finished'
                 if status == 'finished':
                     break

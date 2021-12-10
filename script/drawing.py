@@ -128,11 +128,11 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
     DISPLAYSURF.blit(npcsLP, (975,13))
     printHand(DISPLAYSURF, npc, cartaOpciones)
 
-    pygame.draw.rect(DISPLAYSURF, (255,255,0), gameField, 0)
-
+    # pygame.draw.rect(DISPLAYSURF, (255,255,0), gameField, 0)
 
     # dibujando campo
     pygame.draw.rect(DISPLAYSURF, (255,255,0), gameField, 0)
+
     for i in player.monstersZones():
         if i[0] != None:
             print(f"Esto es el i que dibuja: {i}")
@@ -142,13 +142,40 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
             elif (i[0].battlePosition == 'Defense') and (i[0].facePosition == 'down'):
                 pygame.draw.rect(DISPLAYSURF, (0, 5, 0), (i[0].cardX, i[0].cardY, i[0].cardHeight, i[0].cardWidth), 0)
                 DISPLAYSURF.blit(defenseFD, (i[0].cardX, i[0].cardY))
-    
     for i in player.sTZones():
         if i[0] != None:
             print(f"\n\n\n\n\nEsto hay en las ST: {i, i[0].cardX, i[0].cardY, i[0].cardWidth, i[0].cardHeight, i[0].position}\n\n\n\n\n")
             if (i[0].position == 'set'):
                 pygame.draw.rect(DISPLAYSURF, (0, 5, 0), (i[0].cardX, i[0].cardY, i[0].cardWidth, i[0].cardHeight), 0)
                 DISPLAYSURF.blit(stFD, (i[0].cardX, i[0].cardY))
+            if (i[0].position == 'act'):
+                pygame.draw.rect(DISPLAYSURF, (0, 5, 0), (i[0].cardX, i[0].cardY, i[0].cardWidth, i[0].cardHeight), 0)
+                DISPLAYSURF.blit(i[0].illustration, (i[0].cardX, i[0].cardY))
+
+    # dibujando zonas disponibles en el campo
+    if (functionStatus!= None):
+        if (functionStatus[0] == 'normalSummon') or (functionStatus[0] == 'setSummon'):
+            if (functionStatus[1] == 'zonasDisponibles'):
+                print(f"Zonas de monstruo{cartaOpciones.owner.monstersZones()}")
+                for i in cartaOpciones.owner.monstersZones():
+                    print(i)
+                    if i[0] == None:
+                        pygame.draw.rect(DISPLAYSURF, (0,0,0), i[1], 5)
+            elif (functionStatus[1] == '1Tributo') or (functionStatus[1] == '2Tributo'):
+                for i in cartaOpciones.owner.monstersZones():
+                    if i[0] != None: # colorea los monstruos sacrificables
+                        pygame.draw.rect(DISPLAYSURF, (255,0,0), i[1], 5)
+                if len(functionStatus) == 3:
+                    for i in functionStatus[2]: # colorea los sacrificios
+                        pygame.draw.rect(DISPLAYSURF, (0,0,255), i[1], 5)
+        elif (functionStatus[0] == 'setST') or (functionStatus[0] == 'actST'):
+            # if (functionStatus[0] == 'actST'):
+                # print('\n\n\n\n\n\n\MAGIA!')
+            if (functionStatus[1] == 'zonasDisponibles'):
+                for i in cartaOpciones.owner.sTZones():
+                    print(i)
+                    if i[0] == None:
+                        pygame.draw.rect(DISPLAYSURF, (0,0,0), i[1], 5)
 
     # Q in decks and GY -- 
     # Player
@@ -167,28 +194,6 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
     DISPLAYSURF.blit(playersLP, (151,13))
     printHand(DISPLAYSURF, player, cartaOpciones)
         
-
-    if (functionStatus!= None):
-        if (functionStatus[0] == 'normalSummon') or (functionStatus[0] == 'setSummon'):
-            if (functionStatus[1] == 'zonasDisponibles'):
-                print(f"Zonas de monstruo{cartaOpciones.owner.monstersZones()}")
-                for i in cartaOpciones.owner.monstersZones():
-                    print(i)
-                    if i[0] == None:
-                        pygame.draw.rect(DISPLAYSURF, (0,0,0), i[1], 5)
-            elif (functionStatus[1] == '1Tributo') or (functionStatus[1] == '2Tributo'):
-                for i in cartaOpciones.owner.monstersZones():
-                    if i[0] != None: # colorea los monstruos sacrificables
-                        pygame.draw.rect(DISPLAYSURF, (255,0,0), i[1], 5)
-                if len(functionStatus) == 3:
-                    for i in functionStatus[2]: # colorea los sacrificios
-                        pygame.draw.rect(DISPLAYSURF, (0,0,255), i[1], 5)
-        elif (functionStatus[0] == 'setST'):
-            if (functionStatus[1] == 'zonasDisponibles'):
-                for i in cartaOpciones.owner.sTZones():
-                    print(i)
-                    if i[0] == None:
-                        pygame.draw.rect(DISPLAYSURF, (0,0,0), i[1], 5)
 
     
 
