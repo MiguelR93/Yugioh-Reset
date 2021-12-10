@@ -14,6 +14,7 @@ stFD = pygame.image.load("images/cards/0Face-Down.png")
 turnCounterFont = pygame.font.Font(None,40)
 phaseFont = pygame.font.Font(None,40)
 cardOptionFont = pygame.font.Font(None,18)
+deckQ = pygame.font.Font(None,20)
 nameDuelFont = pygame.font.Font(None,40) # genérico
 
 def printHand(DISPLAYSURF, character, cartaOpciones):
@@ -149,6 +150,18 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
                 pygame.draw.rect(DISPLAYSURF, (0, 5, 0), (i[0].cardX, i[0].cardY, i[0].cardWidth, i[0].cardHeight), 0)
                 DISPLAYSURF.blit(stFD, (i[0].cardX, i[0].cardY))
 
+    # Q in decks and GY -- 
+    # Player
+    deckQ = nameDuelFont.render(f"{len(player.deck)}", 0, (0, 0, 0))
+    gyQ = nameDuelFont.render(f"{len(player.gy)}", 0, (0, 0, 0))
+    DISPLAYSURF.blit(deckQ, ((800+(100/2)),(575+(100/2))))
+    DISPLAYSURF.blit(gyQ, ((800+(100/2)),(450+(100/2))))
+    # NPC
+    deckQnpc = nameDuelFont.render(f"{len(npc.deck)}", 0, (0, 0, 0))
+    gyQnpc = nameDuelFont.render(f"{len(npc.gy)}", 0, (0, 0, 0))
+    DISPLAYSURF.blit(deckQnpc, ((300+(100/2)),(200+(100/2))))
+    DISPLAYSURF.blit(gyQnpc, ((300+(100/2)),(325+(100/2))))
+
     # player
     DISPLAYSURF.blit(playersName, (150,63))
     DISPLAYSURF.blit(playersLP, (151,13))
@@ -177,6 +190,7 @@ def drawingAll(mousePosition,DISPLAYSURF, player, npc, currentlyPhase, cartaOpci
                     if i[0] == None:
                         pygame.draw.rect(DISPLAYSURF, (0,0,0), i[1], 5)
 
+    
 
     pygame.display.update()
     clock.tick(7)
